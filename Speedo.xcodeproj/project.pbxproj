@@ -1,0 +1,307 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		21AFB4AC1E2B7E7700C50731 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB4AB1E2B7E7700C50731 /* AppDelegate.swift */; };
+		21AFB4AE1E2B7E7700C50731 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB4AD1E2B7E7700C50731 /* ViewController.swift */; };
+		21AFB4B11E2B7E7700C50731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB4AF1E2B7E7700C50731 /* Main.storyboard */; };
+		21AFB4B31E2B7E7700C50731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB4B21E2B7E7700C50731 /* Assets.xcassets */; };
+		21AFB4B61E2B7E7700C50731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB4B41E2B7E7700C50731 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		21AFB4A81E2B7E7700C50731 /* Speedo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Speedo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		21AFB4AB1E2B7E7700C50731 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		21AFB4AD1E2B7E7700C50731 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		21AFB4B01E2B7E7700C50731 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		21AFB4B21E2B7E7700C50731 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		21AFB4B51E2B7E7700C50731 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		21AFB4B71E2B7E7700C50731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		21AFB4A51E2B7E7700C50731 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		21AFB49F1E2B7E7600C50731 = {
+			isa = PBXGroup;
+			children = (
+				21AFB4AA1E2B7E7700C50731 /* Speedo */,
+				21AFB4A91E2B7E7700C50731 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		21AFB4A91E2B7E7700C50731 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21AFB4A81E2B7E7700C50731 /* Speedo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21AFB4AA1E2B7E7700C50731 /* Speedo */ = {
+			isa = PBXGroup;
+			children = (
+				21AFB4AB1E2B7E7700C50731 /* AppDelegate.swift */,
+				21AFB4AD1E2B7E7700C50731 /* ViewController.swift */,
+				21AFB4AF1E2B7E7700C50731 /* Main.storyboard */,
+				21AFB4B21E2B7E7700C50731 /* Assets.xcassets */,
+				21AFB4B41E2B7E7700C50731 /* LaunchScreen.storyboard */,
+				21AFB4B71E2B7E7700C50731 /* Info.plist */,
+			);
+			path = Speedo;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		21AFB4A71E2B7E7700C50731 /* Speedo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21AFB4BA1E2B7E7700C50731 /* Build configuration list for PBXNativeTarget "Speedo" */;
+			buildPhases = (
+				21AFB4A41E2B7E7700C50731 /* Sources */,
+				21AFB4A51E2B7E7700C50731 /* Frameworks */,
+				21AFB4A61E2B7E7700C50731 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Speedo;
+			productName = Speedo;
+			productReference = 21AFB4A81E2B7E7700C50731 /* Speedo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		21AFB4A01E2B7E7600C50731 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Kim Rypstra";
+				TargetAttributes = {
+					21AFB4A71E2B7E7700C50731 = {
+						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = YBCCTWH2WW;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 21AFB4A31E2B7E7600C50731 /* Build configuration list for PBXProject "Speedo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 21AFB49F1E2B7E7600C50731;
+			productRefGroup = 21AFB4A91E2B7E7700C50731 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				21AFB4A71E2B7E7700C50731 /* Speedo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		21AFB4A61E2B7E7700C50731 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21AFB4B61E2B7E7700C50731 /* LaunchScreen.storyboard in Resources */,
+				21AFB4B31E2B7E7700C50731 /* Assets.xcassets in Resources */,
+				21AFB4B11E2B7E7700C50731 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		21AFB4A41E2B7E7700C50731 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21AFB4AE1E2B7E7700C50731 /* ViewController.swift in Sources */,
+				21AFB4AC1E2B7E7700C50731 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		21AFB4AF1E2B7E7700C50731 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				21AFB4B01E2B7E7700C50731 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		21AFB4B41E2B7E7700C50731 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				21AFB4B51E2B7E7700C50731 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		21AFB4B81E2B7E7700C50731 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		21AFB4B91E2B7E7700C50731 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		21AFB4BB1E2B7E7700C50731 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = YBCCTWH2WW;
+				INFOPLIST_FILE = Speedo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kimrypstra.Speedo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		21AFB4BC1E2B7E7700C50731 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = YBCCTWH2WW;
+				INFOPLIST_FILE = Speedo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kimrypstra.Speedo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		21AFB4A31E2B7E7600C50731 /* Build configuration list for PBXProject "Speedo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21AFB4B81E2B7E7700C50731 /* Debug */,
+				21AFB4B91E2B7E7700C50731 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21AFB4BA1E2B7E7700C50731 /* Build configuration list for PBXNativeTarget "Speedo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21AFB4BB1E2B7E7700C50731 /* Debug */,
+				21AFB4BC1E2B7E7700C50731 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 21AFB4A01E2B7E7600C50731 /* Project object */;
+}
