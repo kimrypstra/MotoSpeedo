@@ -59,8 +59,8 @@
 			children = (
 				21AFB4AB1E2B7E7700C50731 /* AppDelegate.swift */,
 				21AFB4AD1E2B7E7700C50731 /* ViewController.swift */,
-				21AFB4AF1E2B7E7700C50731 /* Main.storyboard */,
 				21EF812C1E2BAF0A00D95102 /* SettingsViewController.swift */,
+				21AFB4AF1E2B7E7700C50731 /* Main.storyboard */,
 				21AFB4B21E2B7E7700C50731 /* Assets.xcassets */,
 				21AFB4B41E2B7E7700C50731 /* LaunchScreen.storyboard */,
 				21AFB4B71E2B7E7700C50731 /* Info.plist */,

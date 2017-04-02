@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDelegate {
     
     @IBInspectable var bgColour: UIColor = UIColor.black
     @IBInspectable var interfaceColour: UIColor = UIColor.white
@@ -29,7 +29,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var UOM: String?
     var timeMode: SettingsViewController.Time?
     
-    let apiKey = "AIzaSyBupa_geHFNJeaj1_kyCab1vL7a6JaZpdo"
+    var triedSpeedLimit = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +45,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         switch units! {
-        case .KPH: UOM = "kph"
-        case .MPH: UOM = "mph"
-        default: UOM = "kph"
+            case .KPH: UOM = "kph"
+            case .MPH: UOM = "mph"
         }
         
         formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -92,8 +91,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func setTheme() {
-        
-
         if clockLabel != nil && speedLabel != nil && settingsButton != nil {
             self.view.backgroundColor = bgColour
             clockLabel.textColor = interfaceColour
@@ -101,7 +98,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             settingsButton.tintColor = interfaceColour
             maxSpeedLabel.textColor = interfaceColour
         }
-
     }
     
     func clockTick() {
@@ -110,6 +106,45 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             clockLabel.text = formatter.string(from: date)
         }
     }
+    /*
+    func getSpeedLimit(location: String) {
+        print("Trying to get speed limit...")
+        var baseURL = "http://api.disordersoftware.com/speed/slr.php"
+        baseURL.append("?location=\(location)")
+        print("URL String: \(baseURL)")
+        guard let url = URL(string: baseURL.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!) else {
+            print("URL Error")
+            return
+        }
+        
+        let session = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue.main)
+        var dataTask = URLSessionDataTask()
+        var req = URLRequest(url: url)
+        
+        dataTask = session.dataTask(with: req, completionHandler: { (data, response, error) in
+            if error == nil {
+                print("Recived: \(data)")
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: AnyObject] {
+                        print(json)
+                    } else {
+                        print("Error casting JSON as Dictionary")
+                    }
+                    
+                } catch let error {
+                    let string = String(data: data!, encoding: String.Encoding.utf8)
+                    print("Error decoding data to JSON: \(error.localizedDescription). JSON String:\(string)")
+                }
+                
+            } else {
+                fatalError("URL Request Error: \(error)")
+            }
+        })
+        
+        dataTask.resume()
+
+    }
+    */
     
     override func viewDidAppear(_ animated: Bool) {
         locMan.delegate = self
@@ -132,8 +167,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             if speedLabel != nil {
                 speedLabel.text = "\(speedInt)"
             }
+            /*
+            if !triedSpeedLimit {
+                let location = "\(locMan.location!.coordinate.latitude)|\(locMan.location!.coordinate.longitude)"
+                getSpeedLimit(location: location)
+                triedSpeedLimit = true
+            }
+            */
+            
         }
     }
+ 
     
     func resetSpeed() {
         maxSpeed = 0
@@ -173,12 +217,5 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let defaults = UserDefaults()
         defaults.setValue(speed, forKey: "maxSpeed")
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
