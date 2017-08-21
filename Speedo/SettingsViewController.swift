@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class SettingsViewController: UIViewController {
 
@@ -15,6 +16,8 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var speedSeg: UISegmentedControl!
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var showHideLabel: UIButton!
+    @IBOutlet weak var accuracyLabel: UILabel!
+    @IBOutlet weak var accuracyStepper: UIStepper!
     
     let defaults = UserDefaults()
     var shouldShowTopSpeed = false
@@ -58,12 +61,40 @@ class SettingsViewController: UIViewController {
             let title = NSMutableAttributedString(string: "Show Top Speed", attributes: [NSForegroundColorAttributeName : UIColor.white])
             showHideLabel.setAttributedTitle(title, for: .normal)
             shouldShowTopSpeed = false
-            print("Loaded as false")
+            print("Top Speed loaded as false")
         } else {
             let title = NSMutableAttributedString(string: "Hide Top Speed", attributes: [NSForegroundColorAttributeName : UIColor.white])
             showHideLabel.setAttributedTitle(title, for: .normal)
             shouldShowTopSpeed = true
-            print("Loaded as true")
+            print("Top speed loaded as true")
+        }
+        
+        if let accuracy = defaults.value(forKey: "locAcc") as? CLLocationAccuracy {
+            switch accuracy {
+            case kCLLocationAccuracyThreeKilometers:
+                accuracyLabel.text = "Accuracy: 3km"
+                accuracyStepper.value = 0
+            case kCLLocationAccuracyKilometer:
+                accuracyLabel.text = "Accuracy: 1km"
+                accuracyStepper.value = 1
+            case kCLLocationAccuracyHundredMeters:
+                accuracyLabel.text = "Accuracy: 100m"
+                accuracyStepper.value = 2
+            case kCLLocationAccuracyNearestTenMeters:
+                accuracyLabel.text = "Accuracy: 10m"
+                accuracyStepper.value = 3
+            case kCLLocationAccuracyBest:
+                accuracyLabel.text = "Best"
+                accuracyStepper.value = 4
+            case kCLLocationAccuracyBestForNavigation:
+                accuracyLabel.text = "Best for Navigation"
+                accuracyStepper.value = 5
+            default: print("Accuracy setting out of range: \(accuracy)"); break
+            }
+        } else {
+            defaults.set(kCLLocationAccuracyHundredMeters, forKey: "locAcc")
+            accuracyLabel.text = "Accuracy: 100m"
+            print("Couldn't load accuracy; set to 100m")
         }
         
     }
@@ -123,6 +154,31 @@ class SettingsViewController: UIViewController {
         }
         NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "RELOAD_DEFAULTS")))
     }
+    
+    @IBAction func accuracyStepper(_ sender: UIStepper) {
+        switch sender.value {
+        case 0:
+            accuracyLabel.text = "Accuracy: 3km"
+            defaults.set(kCLLocationAccuracyThreeKilometers, forKey: "locAcc")
+        case 1:
+            accuracyLabel.text = "Accuracy: 1km"
+            defaults.set(kCLLocationAccuracyKilometer, forKey: "locAcc")
+        case 2:
+            accuracyLabel.text = "Accuracy: 100m"
+            defaults.set(kCLLocationAccuracyHundredMeters, forKey: "locAcc")
+        case 3:
+            accuracyLabel.text = "Accuracy: 10m"
+            defaults.set(kCLLocationAccuracyNearestTenMeters, forKey: "locAcc")
+        case 4:
+            accuracyLabel.text = "Best"
+            defaults.set(kCLLocationAccuracyBest, forKey: "locAcc")
+        case 5:
+            accuracyLabel.text = "Best for Navigation"
+            defaults.set(kCLLocationAccuracyBestForNavigation, forKey: "locAcc")
+        default: print("Accuracy stepper out of range: \(sender.value)"); break
+        }
+    }
+    
     
     @IBAction func didTapOK(_ sender: UIButton) {
         // save settings 

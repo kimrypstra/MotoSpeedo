@@ -9,12 +9,13 @@
 import UIKit
 import CoreLocation
 
-
 class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDelegate {
     
     @IBInspectable var bgColour: UIColor = UIColor.black
     @IBInspectable var interfaceColour: UIColor = UIColor.white
     
+    @IBOutlet weak var rightStrength: UIProgressView!
+    @IBOutlet weak var leftStrength: UIProgressView!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var maxSpeedLabel: UILabel!
@@ -22,6 +23,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
     var maxSpeed: Double = 0
     
     let locMan = CLLocationManager()
+    
     let formatter = DateFormatter()
     var timer = Timer()
     
@@ -33,7 +35,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        leftStrength.transform = leftStrength.transform.rotated(by: CGFloat.pi)
+        UIApplication.shared.isIdleTimerDisabled = true
         loadDefaults()
+    }
+        
+    func radToDeg(rad: Double) -> Double {
+        return (180/Double.pi) * rad
     }
     
     func loadDefaults() {
@@ -83,8 +91,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
             }
         }
         
+        guard let accuracy = defaults.value(forKey: "locAcc") as? CLLocationAccuracy else {
+            locMan.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            return
+        }
+        locMan.desiredAccuracy = accuracy
+        
         clockTick()
-        updateSpeed()
+        updateSpeed(speed: 0)
         setTheme()
         timer.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.clockTick), userInfo: nil, repeats: true)
@@ -97,6 +111,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
             speedLabel.textColor = interfaceColour
             settingsButton.tintColor = interfaceColour
             maxSpeedLabel.textColor = interfaceColour
+            leftStrength.trackTintColor = bgColour
+            rightStrength.trackTintColor = bgColour
+            leftStrength.progressTintColor = interfaceColour
+            rightStrength.progressTintColor = interfaceColour
         }
     }
     
@@ -106,45 +124,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
             clockLabel.text = formatter.string(from: date)
         }
     }
-    /*
-    func getSpeedLimit(location: String) {
-        print("Trying to get speed limit...")
-        var baseURL = "http://api.disordersoftware.com/speed/slr.php"
-        baseURL.append("?location=\(location)")
-        print("URL String: \(baseURL)")
-        guard let url = URL(string: baseURL.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!) else {
-            print("URL Error")
-            return
-        }
-        
-        let session = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue.main)
-        var dataTask = URLSessionDataTask()
-        var req = URLRequest(url: url)
-        
-        dataTask = session.dataTask(with: req, completionHandler: { (data, response, error) in
-            if error == nil {
-                print("Recived: \(data)")
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: AnyObject] {
-                        print(json)
-                    } else {
-                        print("Error casting JSON as Dictionary")
-                    }
-                    
-                } catch let error {
-                    let string = String(data: data!, encoding: String.Encoding.utf8)
-                    print("Error decoding data to JSON: \(error.localizedDescription). JSON String:\(string)")
-                }
-                
-            } else {
-                fatalError("URL Request Error: \(error)")
-            }
-        })
-        
-        dataTask.resume()
-
-    }
-    */
     
     override func viewDidAppear(_ animated: Bool) {
         locMan.delegate = self
@@ -153,28 +132,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
             locMan.requestWhenInUseAuthorization()
         } else {
             print("Authorized. Starting location services...")
-            locMan.desiredAccuracy = kCLLocationAccuracyBest
+            locMan.desiredAccuracy = UserDefaults().value(forKey: "locAcc") as! CLLocationAccuracy
             locMan.startUpdatingLocation()
         }
     }
     
-    func updateSpeed() {
-        if let speed = locMan.location?.speed {
-            let speedInt = Int(ceil(speed * units!.rawValue))
-            if speed > maxSpeed {
-                saveMaxSpeed(speed: speed)
-            }
-            if speedLabel != nil {
-                speedLabel.text = "\(speedInt)"
-            }
-            /*
-            if !triedSpeedLimit {
-                let location = "\(locMan.location!.coordinate.latitude)|\(locMan.location!.coordinate.longitude)"
-                getSpeedLimit(location: location)
-                triedSpeedLimit = true
-            }
-            */
-            
+    func updateSpeed(speed: Double) {
+        guard speed > 0 else {
+            speedLabel.text = "0"
+            return 
+        }
+        
+        let speedInt = Int(ceil(speed * units!.rawValue))
+        if speed > maxSpeed {
+            saveMaxSpeed(speed: speed)
+        }
+        if speedLabel != nil {
+            speedLabel.text = "\(speedInt)"
         }
     }
  
@@ -205,7 +179,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        updateSpeed()
+        var locationScore: Float = 0
+        switch locations.first?.horizontalAccuracy as! Double {
+        case -50...0: locationScore = 0
+        case 0...10: locationScore = 0.5
+        case 11...20: locationScore = 0.4
+        case 21...30: locationScore = 0.3
+        case 31...40: locationScore = 0.2
+        case 41...50: locationScore = 0.1
+        default: locationScore = 0
+        }
+        leftStrength.setProgress(locationScore, animated: true)
+        rightStrength.setProgress(locationScore, animated: true)
+        if let speed = locations.first?.speed {
+            updateSpeed(speed: speed)
+        }
+        
     }
     
     func saveMaxSpeed(speed: Double) {

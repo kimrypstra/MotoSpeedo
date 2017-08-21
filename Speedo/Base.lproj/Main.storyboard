@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirNextCondensed.ttc">
+            <string>AvenirNextCondensed-HeavyItalic</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -72,23 +78,48 @@
                                     <action selector="didTapSettings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3gn-Uo-liI"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="EN6-aI-FAR">
+                                <rect key="frame" x="333.5" y="371" width="333.5" height="2"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="X9W-b0-Amg"/>
+                                </constraints>
+                                <color key="progressTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="trackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </progressView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="9aZ-SJ-5f1">
+                                <rect key="frame" x="0.0" y="371" width="333.5" height="2"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="ld4-3z-p1I"/>
+                                </constraints>
+                                <color key="progressTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="trackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="oun-wN-gFL" firstAttribute="top" secondItem="GAj-Ad-W7j" secondAttribute="bottom" id="01k-TT-Ieq"/>
                             <constraint firstItem="GAj-Ad-W7j" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="3EW-EW-sg7"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EN6-aI-FAR" secondAttribute="bottom" constant="2" id="8OK-Dt-BB4"/>
                             <constraint firstItem="GAj-Ad-W7j" firstAttribute="leading" secondItem="uCA-XW-MyI" secondAttribute="trailing" id="Aql-q8-B0Q"/>
+                            <constraint firstItem="EN6-aI-FAR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Hvt-hY-hhn"/>
                             <constraint firstItem="oun-wN-gFL" firstAttribute="top" secondItem="uCA-XW-MyI" secondAttribute="bottom" id="OO8-wX-CSx"/>
                             <constraint firstItem="oun-wN-gFL" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Pnv-gp-mW0"/>
+                            <constraint firstItem="9aZ-SJ-5f1" firstAttribute="centerY" secondItem="EN6-aI-FAR" secondAttribute="centerY" id="RC2-bh-ybe"/>
+                            <constraint firstItem="9aZ-SJ-5f1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="RYJ-mq-3i7"/>
+                            <constraint firstItem="9aZ-SJ-5f1" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Yti-uu-ouA"/>
                             <constraint firstItem="2Fy-ig-0wF" firstAttribute="width" secondItem="uCA-XW-MyI" secondAttribute="width" id="Z2b-aP-3Da"/>
                             <constraint firstItem="2Fy-ig-0wF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="ct8-7O-emF"/>
                             <constraint firstItem="2Fy-ig-0wF" firstAttribute="height" secondItem="uCA-XW-MyI" secondAttribute="height" id="eFJ-x3-oi7"/>
                             <constraint firstItem="2Fy-ig-0wF" firstAttribute="leading" secondItem="GAj-Ad-W7j" secondAttribute="trailing" id="lwg-6e-Oy5"/>
                             <constraint firstItem="oun-wN-gFL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="oME-HR-8Oe"/>
                             <constraint firstAttribute="leadingMargin" secondItem="uCA-XW-MyI" secondAttribute="leading" id="qPh-oY-Fdd"/>
+                            <constraint firstAttribute="trailing" secondItem="EN6-aI-FAR" secondAttribute="trailing" id="rpi-qb-MHq"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oun-wN-gFL" secondAttribute="bottom" id="sQQ-1G-hVY"/>
                             <constraint firstItem="uCA-XW-MyI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="uWC-oj-zev"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2Fy-ig-0wF" secondAttribute="trailing" id="w2a-j4-GbD"/>
+                            <constraint firstItem="9aZ-SJ-5f1" firstAttribute="height" secondItem="EN6-aI-FAR" secondAttribute="height" id="xxn-GM-dlD"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -102,7 +133,9 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="clockLabel" destination="uCA-XW-MyI" id="fAz-Q3-yhD"/>
+                        <outlet property="leftStrength" destination="9aZ-SJ-5f1" id="Rng-5w-i3i"/>
                         <outlet property="maxSpeedLabel" destination="GAj-Ad-W7j" id="cVm-Tf-ahW"/>
+                        <outlet property="rightStrength" destination="EN6-aI-FAR" id="QhZ-Eg-aRJ"/>
                         <outlet property="settingsButton" destination="2Fy-ig-0wF" id="4Va-SM-EwO"/>
                         <outlet property="speedLabel" destination="oun-wN-gFL" id="Yvp-KV-x3l"/>
                         <segue destination="jo1-eD-5Vf" kind="show" identifier="showSettings" id="KR6-v8-YvL"/>
@@ -151,14 +184,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fgb-01-sCA">
-                                <rect key="frame" x="321" y="328" width="25" height="25"/>
+                                <rect key="frame" x="321" y="336" width="25" height="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" image="tick"/>
                                 <connections>
                                     <action selector="didTapOK:" destination="jo1-eD-5Vf" eventType="touchUpInside" id="INO-2C-hDw"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Svm-bQ-rA3">
-                                <rect key="frame" x="273.5" y="86.5" width="120" height="200.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Svm-bQ-rA3">
+                                <rect key="frame" x="273.5" y="76.5" width="120" height="250"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kvi-oB-JKz">
                                         <rect key="frame" x="9" y="0.0" width="102" height="32.5"/>
@@ -178,7 +212,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="irP-Yx-WNq">
-                                        <rect key="frame" x="11.5" y="42.5" width="97" height="32.5"/>
+                                        <rect key="frame" x="11.5" y="36.5" width="97" height="32.5"/>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
                                                 <fragment content="Hide Top Speed">
@@ -195,7 +229,7 @@
                                         </connections>
                                     </button>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lfc-MK-hd0">
-                                        <rect key="frame" x="0.0" y="87.5" width="120" height="29"/>
+                                        <rect key="frame" x="0.0" y="75.5" width="120" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="7E5-xZ-18K"/>
                                         </constraints>
@@ -209,7 +243,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Pjp-Xe-h2S">
-                                        <rect key="frame" x="0.0" y="130" width="120" height="29"/>
+                                        <rect key="frame" x="0.0" y="112" width="120" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="yZt-cr-5s3"/>
                                         </constraints>
@@ -223,7 +257,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Fiw-Ln-sux">
-                                        <rect key="frame" x="0.0" y="172.5" width="120" height="29"/>
+                                        <rect key="frame" x="0.0" y="148.5" width="120" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="v4U-qF-tuJ"/>
                                         </constraints>
@@ -236,24 +270,39 @@
                                             <action selector="themeSeg:" destination="jo1-eD-5Vf" eventType="valueChanged" id="wDw-PH-4QG"/>
                                         </connections>
                                     </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accuracy: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sU0-X8-MsG">
+                                        <rect key="frame" x="29" y="188.5" width="62" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-HeavyItalic" family="Avenir Next Condensed" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="Cne-Rh-iWL">
+                                        <rect key="frame" x="13" y="221" width="94" height="29"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="accuracyStepper:" destination="jo1-eD-5Vf" eventType="valueChanged" id="vNO-Vj-ma3"/>
+                                        </connections>
+                                    </stepper>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="7qi-Dl-Ou6" secondAttribute="trailing" id="3E2-7B-vpF"/>
-                            <constraint firstItem="Svm-bQ-rA3" firstAttribute="top" secondItem="7qi-Dl-Ou6" secondAttribute="bottom" constant="20" id="6Du-QJ-2B5"/>
+                            <constraint firstItem="Svm-bQ-rA3" firstAttribute="top" secondItem="7qi-Dl-Ou6" secondAttribute="bottom" constant="10" id="6Du-QJ-2B5"/>
                             <constraint firstItem="7qi-Dl-Ou6" firstAttribute="top" secondItem="nRQ-iC-klu" secondAttribute="bottom" constant="-4.5" id="8gf-dE-waM"/>
                             <constraint firstItem="Fgb-01-sCA" firstAttribute="centerX" secondItem="Lue-b7-V1h" secondAttribute="centerX" id="9Z9-IX-uef"/>
                             <constraint firstItem="Svm-bQ-rA3" firstAttribute="centerX" secondItem="Lue-b7-V1h" secondAttribute="centerX" id="9dW-6I-b9n"/>
                             <constraint firstItem="nRQ-iC-klu" firstAttribute="top" secondItem="SmY-1w-vhl" secondAttribute="bottom" constant="8" id="GUP-Db-p1h"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nRQ-iC-klu" secondAttribute="trailing" id="JLZ-qh-bnj"/>
                             <constraint firstItem="7qi-Dl-Ou6" firstAttribute="leading" secondItem="Lue-b7-V1h" secondAttribute="leadingMargin" id="iNH-LB-qUh"/>
-                            <constraint firstItem="nbQ-uX-S9K" firstAttribute="top" secondItem="Fgb-01-sCA" secondAttribute="bottom" constant="22" id="wkr-Gk-Iuj"/>
+                            <constraint firstItem="nbQ-uX-S9K" firstAttribute="top" secondItem="Fgb-01-sCA" secondAttribute="bottom" constant="14" id="wkr-Gk-Iuj"/>
                             <constraint firstItem="nRQ-iC-klu" firstAttribute="leading" secondItem="Lue-b7-V1h" secondAttribute="leadingMargin" id="yRm-Ea-D9F"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="accuracyLabel" destination="sU0-X8-MsG" id="PYj-0u-HM2"/>
+                        <outlet property="accuracyStepper" destination="Cne-Rh-iWL" id="XpH-iY-a57"/>
                         <outlet property="showHideLabel" destination="irP-Yx-WNq" id="dKZ-Ms-vD9"/>
                         <outlet property="speedSeg" destination="lfc-MK-hd0" id="pYI-HY-1bK"/>
                         <outlet property="themeSeg" destination="Fiw-Ln-sux" id="4XQ-dT-GKn"/>
@@ -267,7 +316,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="settings" width="25" height="25"/>
+        <image name="settings" width="37" height="37"/>
         <image name="tick" width="25" height="25"/>
     </resources>
 </document>
