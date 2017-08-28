@@ -18,11 +18,14 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var showHideLabel: UIButton!
     @IBOutlet weak var accuracyLabel: UILabel!
     @IBOutlet weak var accuracyStepper: UIStepper!
+    @IBOutlet weak var distanceStepper: UIStepper!
+    @IBOutlet weak var distanceLabel: UILabel!
     
     let defaults = UserDefaults()
     var shouldShowTopSpeed = false
     
     enum Units: Double {
+        // These constants are used to convert from m/s
         case KPH = 3.6
         case MPH = 2.23694
     }
@@ -39,6 +42,7 @@ class SettingsViewController: UIViewController {
 
     func loadDefaults() {
         versionLabel.text = "version \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String)"
+        
         if defaults.value(forKey: "theme") as? String == "dark" {
             themeSeg.selectedSegmentIndex = 0
         } else {
@@ -97,6 +101,29 @@ class SettingsViewController: UIViewController {
             print("Couldn't load accuracy; set to 100m")
         }
         
+        if let fuelDistance = defaults.value(forKey: "distanceBeforeFuelLight") as? Double {
+            // set the stepper to this value
+            distanceStepper.value = fuelDistance
+            // set the label to the stepper's value
+            if speedSeg.selectedSegmentIndex == 0 {
+                //km
+                distanceLabel.text = "Refuel distance: \(Int(distanceStepper.value / 1000))km"
+            } else {
+                //miles
+                distanceLabel.text = "Refuel distance: \(Int((distanceStepper.value / 1000) / 1.6))mi"
+            }
+        } else {
+            // setting hasn't been changed; set to 100km
+            defaults.set(Double(100000), forKey: "distanceBeforeFuelLight")
+            distanceStepper.value = 100000
+            if speedSeg.selectedSegmentIndex == 0 {
+                //km
+                distanceLabel.text = "Refuel distance: \(Int(distanceStepper.value / 1000))km"
+            } else {
+                //miles
+                distanceLabel.text = "Refuel distance: \(Int((distanceStepper.value / 1000) / 1.6))mi"
+            }
+        }
     }
     
     @IBAction func didTapResetTopSpeed(_ sender: UIButton) {
@@ -139,14 +166,6 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func themeSeg(_ sender: UISegmentedControl) {
-        // CHANGE_THEME 
-        /*
-        let alert = UIAlertController(title: "Not complete", message: "This feature is not yet complete", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(okAction)
-        self.present(alert, animated: true, completion: nil)
-        */
-        
         switch sender.selectedSegmentIndex {
         case 0: defaults.set("dark", forKey: "theme")
         case 1: defaults.set("light", forKey: "theme")
@@ -179,6 +198,16 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    @IBAction func fuelStepper(_ sender: UIStepper) {
+        defaults.set(sender.value, forKey: "distanceBeforeFuelLight")
+        if speedSeg.selectedSegmentIndex == 0 {
+            //km
+            distanceLabel.text = "Refuel distance: \(Int(sender.value / 1000))km"
+        } else {
+            //miles
+            distanceLabel.text = "Refuel distance: \(Int((sender.value / 1000) / 1.6))mi"
+        }
+    }
     
     @IBAction func didTapOK(_ sender: UIButton) {
         // save settings 
