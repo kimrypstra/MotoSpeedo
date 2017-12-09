@@ -12,10 +12,10 @@ import CoreLocation
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var timeSeg: UISegmentedControl!
-    @IBOutlet weak var themeSeg: UISegmentedControl!
     @IBOutlet weak var speedSeg: UISegmentedControl!
     @IBOutlet weak var versionLabel: UILabel!
-    @IBOutlet weak var showHideLabel: UIButton!
+    @IBOutlet weak var fuelTripSwitch: UISwitch!
+    @IBOutlet weak var showTopSpeedSwitch: UISwitch!
     @IBOutlet weak var accuracyLabel: UILabel!
     @IBOutlet weak var accuracyStepper: UIStepper!
     @IBOutlet weak var distanceStepper: UIStepper!
@@ -40,15 +40,10 @@ class SettingsViewController: UIViewController {
         self.defaults = UserDefaults()
         loadDefaults()
     }
+    
 
     func loadDefaults() {
         versionLabel.text = "version \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String)"
-        
-        if defaults.value(forKey: "theme") as? String == "dark" {
-            themeSeg.selectedSegmentIndex = 0
-        } else {
-            themeSeg.selectedSegmentIndex = 1
-        }
         
         if defaults.value(forKey: "units") as? Double == 3.6 {
             speedSeg.selectedSegmentIndex = 0
@@ -63,36 +58,38 @@ class SettingsViewController: UIViewController {
         }
         
         if defaults.value(forKey: "displayTopSpeed") as? Bool == false {
-            let title = NSMutableAttributedString(string: "Show Top Speed", attributes: [NSForegroundColorAttributeName : UIColor.white])
-            showHideLabel.setAttributedTitle(title, for: .normal)
-            shouldShowTopSpeed = false
+            showTopSpeedSwitch.isOn = false
             print("Top Speed loaded as false")
         } else {
-            let title = NSMutableAttributedString(string: "Hide Top Speed", attributes: [NSForegroundColorAttributeName : UIColor.white])
-            showHideLabel.setAttributedTitle(title, for: .normal)
-            shouldShowTopSpeed = true
+            showTopSpeedSwitch.isOn = true
             print("Top speed loaded as true")
+        }
+        
+        if defaults.value(forKey: "shouldDoFuelTrip") as? Bool == false {
+            fuelTripSwitch.isOn = false
+        } else {
+            fuelTripSwitch.isOn = true
         }
         
         if let accuracy = defaults.value(forKey: "locAcc") as? CLLocationAccuracy {
             switch accuracy {
             case kCLLocationAccuracyThreeKilometers:
-                accuracyLabel.text = "Why bother?"
+                accuracyLabel.text = "Accuracy: Why bother?"
                 accuracyStepper.value = 0
             case kCLLocationAccuracyKilometer:
-                accuracyLabel.text = "Not good"
+                accuracyLabel.text = "Accuracy: Not great"
                 accuracyStepper.value = 1
             case kCLLocationAccuracyHundredMeters:
-                accuracyLabel.text = "Good"
+                accuracyLabel.text = "Accuracy: Good"
                 accuracyStepper.value = 2
             case kCLLocationAccuracyNearestTenMeters:
-                accuracyLabel.text = "Great"
+                accuracyLabel.text = "Accuracy: Great"
                 accuracyStepper.value = 3
             case kCLLocationAccuracyBest:
-                accuracyLabel.text = "Fantastic"
+                accuracyLabel.text = "Accuracy: Fantastic"
                 accuracyStepper.value = 4
             case kCLLocationAccuracyBestForNavigation:
-                accuracyLabel.text = "Amazing (RIP Battery)"
+                accuracyLabel.text = "Accuracy: Amazing (RIP Battery)"
                 accuracyStepper.value = 5
             default: print("Accuracy setting out of range: \(accuracy)"); break
             }
@@ -108,10 +105,10 @@ class SettingsViewController: UIViewController {
             // set the label to the stepper's value
             if speedSeg.selectedSegmentIndex == 0 {
                 //km
-                distanceLabel.text = "Refuel distance: \(Int(distanceStepper.value / 1000))km"
+                distanceLabel.text = "Trip distance: \(Int(distanceStepper.value / 1000))km"
             } else {
                 //miles
-                distanceLabel.text = "Refuel distance: \(Int((distanceStepper.value / 1000) / 1.6))mi"
+                distanceLabel.text = "Trip distance: \(Int((distanceStepper.value / 1000) / 1.6))mi"
             }
         } else {
             // setting hasn't been changed; set to 100km
@@ -119,33 +116,30 @@ class SettingsViewController: UIViewController {
             distanceStepper.value = 100000
             if speedSeg.selectedSegmentIndex == 0 {
                 //km
-                distanceLabel.text = "Refuel distance: \(Int(distanceStepper.value / 1000))km"
+                distanceLabel.text = "Trip distance: \(Int(distanceStepper.value / 1000))km"
             } else {
                 //miles
-                distanceLabel.text = "Refuel distance: \(Int((distanceStepper.value / 1000) / 1.6))mi"
+                distanceLabel.text = "Trip distance: \(Int((distanceStepper.value / 1000) / 1.6))mi"
             }
         }
     }
     
-    @IBAction func didTapResetTopSpeed(_ sender: UIButton) {
-        defaults.set(0, forKey: "maxSpeed")
-        NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "RESET_TOP_SPEED")))
-    }
-
-    @IBAction func didTapShowHide(_ sender: UIButton) {
+    @IBAction func showTopSpeedSwitch(_ sender: UISwitch) {
         print("Show/Hide tapped")
-        if shouldShowTopSpeed == true {
-            defaults.setValue(false, forKey: "displayTopSpeed")
-            shouldShowTopSpeed = false
-            let title = NSMutableAttributedString(string: "Show Top Speed", attributes: [NSForegroundColorAttributeName : UIColor.white])
-            showHideLabel.setAttributedTitle(title, for: .normal)
-        } else {
+        if sender.isOn {
             defaults.setValue(true, forKey: "displayTopSpeed")
-            let title = NSMutableAttributedString(string: "Hide Top Speed", attributes: [NSForegroundColorAttributeName : UIColor.white])
-            showHideLabel.setAttributedTitle(title, for: .normal)
-            shouldShowTopSpeed = true
+        } else {
+            defaults.setValue(false, forKey: "displayTopSpeed")
         }
         NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "RELOAD_DEFAULTS")))
+    }
+    
+    @IBAction func fuelTripSwitch(_ sender: UISwitch) {
+        if sender.isOn {
+            defaults.setValue(true, forKey: "shouldDoFuelTrip")
+        } else {
+            defaults.setValue(false, forKey: "shouldDoFuelTrip")
+        }
     }
     
     @IBAction func speedUnitSeg(_ sender: UISegmentedControl) {
@@ -166,14 +160,6 @@ class SettingsViewController: UIViewController {
         NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "RELOAD_DEFAULTS")))
     }
     
-    @IBAction func themeSeg(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0: defaults.set("dark", forKey: "theme")
-        case 1: defaults.set("light", forKey: "theme")
-        default: defaults.set("dark", forKey: "theme")
-        }
-        NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "RELOAD_DEFAULTS")))
-    }
     
     @IBAction func accuracyStepper(_ sender: UIStepper) {
         switch sender.value {
@@ -204,19 +190,11 @@ class SettingsViewController: UIViewController {
         defaults.set(sender.value, forKey: "distanceBeforeFuelLight")
         if speedSeg.selectedSegmentIndex == 0 {
             //km
-            distanceLabel.text = "Refuel distance: \(Int(sender.value / 1000))km"
+            distanceLabel.text = "Trip distance: \(Int(sender.value / 1000))km"
         } else {
             //miles
-            distanceLabel.text = "Refuel distance: \(Int((sender.value / 1000) / 1.6))mi"
+            distanceLabel.text = "Trip distance: \(Int((sender.value / 1000) / 1.6))mi"
         }
-    }
-    
-    @IBAction func resetFuelTrip(_ sender: UIButton) {
-        print("Resetting fuel trip...")
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "RESET_FUEL_TRIP"), object: nil)
-        defaults.set(0.0, forKey: "currentDistance")
-        defaults.synchronize()
-        print("Set as... \(defaults.value(forKey: "currentDistance")!)")
     }
     
     @IBAction func didTapOK(_ sender: UIButton) {

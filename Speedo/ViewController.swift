@@ -248,6 +248,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
         NotificationCenter.default.addObserver(self, selector: #selector(self.resetSpeed), name: Notification.Name(rawValue: "RESET_TOP_SPEED"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.loadDefaults), name: Notification.Name(rawValue: "RELOAD_DEFAULTS"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.didResetFuelTrip), name: Notification.Name(rawValue: "RESET_FUEL_TRIP"), object: nil)
+        let value =  UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+        UIViewController.attemptRotationToDeviceOrientation()
         self.performSegue(withIdentifier: "showSettings", sender: self)
     }
     

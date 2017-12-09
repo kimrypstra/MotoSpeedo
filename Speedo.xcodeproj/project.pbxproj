@@ -7,6 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21406EFC1FDBD1C9008C536A /* Kawasaki@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EEC1FDBD1C7008C536A /* Kawasaki@2x.png */; };
+		21406EFD1FDBD1C9008C536A /* Kawasaki@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EED1FDBD1C7008C536A /* Kawasaki@3x.png */; };
+		21406EFE1FDBD1C9008C536A /* Yamaha@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EEE1FDBD1C7008C536A /* Yamaha@2x.png */; };
+		21406EFF1FDBD1C9008C536A /* HD@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EEF1FDBD1C7008C536A /* HD@2x.png */; };
+		21406F001FDBD1C9008C536A /* Yamaha@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EF01FDBD1C7008C536A /* Yamaha@3x.png */; };
+		21406F011FDBD1C9008C536A /* BMW@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EF11FDBD1C8008C536A /* BMW@2x.png */; };
+		21406F021FDBD1C9008C536A /* Ducati@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EF21FDBD1C8008C536A /* Ducati@3x.png */; };
+		21406F031FDBD1C9008C536A /* KTM@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EF31FDBD1C8008C536A /* KTM@3x.png */; };
+		21406F041FDBD1C9008C536A /* HD@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EF41FDBD1C8008C536A /* HD@3x.png */; };
+		21406F051FDBD1C9008C536A /* Dark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EF51FDBD1C8008C536A /* Dark@3x.png */; };
+		21406F061FDBD1C9008C536A /* Dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EF61FDBD1C8008C536A /* Dark@2x.png */; };
+		21406F071FDBD1C9008C536A /* Honda@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EF71FDBD1C8008C536A /* Honda@2x.png */; };
+		21406F081FDBD1C9008C536A /* Ducati@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EF81FDBD1C8008C536A /* Ducati@2x.png */; };
+		21406F091FDBD1C9008C536A /* Honda@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EF91FDBD1C8008C536A /* Honda@3x.png */; };
+		21406F0A1FDBD1C9008C536A /* KTM@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EFA1FDBD1C8008C536A /* KTM@2x.png */; };
+		21406F0B1FDBD1C9008C536A /* BMW@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EFB1FDBD1C9008C536A /* BMW@3x.png */; };
+		216C3AF91FDBE633006D57C0 /* Dark Curved.png in Resources */ = {isa = PBXBuildFile; fileRef = 216C3AF01FDBE633006D57C0 /* Dark Curved.png */; };
+		216C3AFA1FDBE633006D57C0 /* Honda Curved.png in Resources */ = {isa = PBXBuildFile; fileRef = 216C3AF11FDBE633006D57C0 /* Honda Curved.png */; };
+		216C3AFB1FDBE633006D57C0 /* Kawasaki Curved.png in Resources */ = {isa = PBXBuildFile; fileRef = 216C3AF21FDBE633006D57C0 /* Kawasaki Curved.png */; };
+		216C3AFC1FDBE633006D57C0 /* BMW Curved.png in Resources */ = {isa = PBXBuildFile; fileRef = 216C3AF31FDBE633006D57C0 /* BMW Curved.png */; };
+		216C3AFD1FDBE633006D57C0 /* BaseIcon Curved.png in Resources */ = {isa = PBXBuildFile; fileRef = 216C3AF41FDBE633006D57C0 /* BaseIcon Curved.png */; };
+		216C3AFE1FDBE633006D57C0 /* KTM Curved.png in Resources */ = {isa = PBXBuildFile; fileRef = 216C3AF51FDBE633006D57C0 /* KTM Curved.png */; };
+		216C3AFF1FDBE633006D57C0 /* Ducati Curved.png in Resources */ = {isa = PBXBuildFile; fileRef = 216C3AF61FDBE633006D57C0 /* Ducati Curved.png */; };
+		216C3B001FDBE633006D57C0 /* HD Curved.png in Resources */ = {isa = PBXBuildFile; fileRef = 216C3AF71FDBE633006D57C0 /* HD Curved.png */; };
+		216C3B011FDBE633006D57C0 /* Yamaha Curved.png in Resources */ = {isa = PBXBuildFile; fileRef = 216C3AF81FDBE633006D57C0 /* Yamaha Curved.png */; };
 		218BE4041F53A33D00748783 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218BE4031F53A33D00748783 /* WeatherViewController.swift */; };
 		21AFB4AC1E2B7E7700C50731 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB4AB1E2B7E7700C50731 /* AppDelegate.swift */; };
 		21AFB4AE1E2B7E7700C50731 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB4AD1E2B7E7700C50731 /* ViewController.swift */; };
@@ -20,6 +45,31 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21406EEC1FDBD1C7008C536A /* Kawasaki@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Kawasaki@2x.png"; sourceTree = "<group>"; };
+		21406EED1FDBD1C7008C536A /* Kawasaki@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Kawasaki@3x.png"; sourceTree = "<group>"; };
+		21406EEE1FDBD1C7008C536A /* Yamaha@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Yamaha@2x.png"; sourceTree = "<group>"; };
+		21406EEF1FDBD1C7008C536A /* HD@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HD@2x.png"; sourceTree = "<group>"; };
+		21406EF01FDBD1C7008C536A /* Yamaha@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Yamaha@3x.png"; sourceTree = "<group>"; };
+		21406EF11FDBD1C8008C536A /* BMW@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BMW@2x.png"; sourceTree = "<group>"; };
+		21406EF21FDBD1C8008C536A /* Ducati@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ducati@3x.png"; sourceTree = "<group>"; };
+		21406EF31FDBD1C8008C536A /* KTM@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KTM@3x.png"; sourceTree = "<group>"; };
+		21406EF41FDBD1C8008C536A /* HD@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HD@3x.png"; sourceTree = "<group>"; };
+		21406EF51FDBD1C8008C536A /* Dark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark@3x.png"; sourceTree = "<group>"; };
+		21406EF61FDBD1C8008C536A /* Dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark@2x.png"; sourceTree = "<group>"; };
+		21406EF71FDBD1C8008C536A /* Honda@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Honda@2x.png"; sourceTree = "<group>"; };
+		21406EF81FDBD1C8008C536A /* Ducati@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ducati@2x.png"; sourceTree = "<group>"; };
+		21406EF91FDBD1C8008C536A /* Honda@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Honda@3x.png"; sourceTree = "<group>"; };
+		21406EFA1FDBD1C8008C536A /* KTM@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KTM@2x.png"; sourceTree = "<group>"; };
+		21406EFB1FDBD1C9008C536A /* BMW@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BMW@3x.png"; sourceTree = "<group>"; };
+		216C3AF01FDBE633006D57C0 /* Dark Curved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark Curved.png"; sourceTree = "<group>"; };
+		216C3AF11FDBE633006D57C0 /* Honda Curved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Honda Curved.png"; sourceTree = "<group>"; };
+		216C3AF21FDBE633006D57C0 /* Kawasaki Curved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Kawasaki Curved.png"; sourceTree = "<group>"; };
+		216C3AF31FDBE633006D57C0 /* BMW Curved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BMW Curved.png"; sourceTree = "<group>"; };
+		216C3AF41FDBE633006D57C0 /* BaseIcon Curved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BaseIcon Curved.png"; sourceTree = "<group>"; };
+		216C3AF51FDBE633006D57C0 /* KTM Curved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KTM Curved.png"; sourceTree = "<group>"; };
+		216C3AF61FDBE633006D57C0 /* Ducati Curved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ducati Curved.png"; sourceTree = "<group>"; };
+		216C3AF71FDBE633006D57C0 /* HD Curved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HD Curved.png"; sourceTree = "<group>"; };
+		216C3AF81FDBE633006D57C0 /* Yamaha Curved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Yamaha Curved.png"; sourceTree = "<group>"; };
 		218BE4031F53A33D00748783 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		21AFB4A81E2B7E7700C50731 /* Speedo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Speedo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21AFB4AB1E2B7E7700C50731 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +99,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21406EEB1FDBD1AF008C536A /* AlternateIcons */ = {
+			isa = PBXGroup;
+			children = (
+				21406EF11FDBD1C8008C536A /* BMW@2x.png */,
+				21406EFB1FDBD1C9008C536A /* BMW@3x.png */,
+				21406EF61FDBD1C8008C536A /* Dark@2x.png */,
+				21406EF51FDBD1C8008C536A /* Dark@3x.png */,
+				21406EF81FDBD1C8008C536A /* Ducati@2x.png */,
+				21406EF21FDBD1C8008C536A /* Ducati@3x.png */,
+				21406EEF1FDBD1C7008C536A /* HD@2x.png */,
+				21406EF41FDBD1C8008C536A /* HD@3x.png */,
+				21406EF71FDBD1C8008C536A /* Honda@2x.png */,
+				21406EF91FDBD1C8008C536A /* Honda@3x.png */,
+				21406EEC1FDBD1C7008C536A /* Kawasaki@2x.png */,
+				21406EED1FDBD1C7008C536A /* Kawasaki@3x.png */,
+				21406EFA1FDBD1C8008C536A /* KTM@2x.png */,
+				21406EF31FDBD1C8008C536A /* KTM@3x.png */,
+				21406EEE1FDBD1C7008C536A /* Yamaha@2x.png */,
+				21406EF01FDBD1C7008C536A /* Yamaha@3x.png */,
+			);
+			path = AlternateIcons;
+			sourceTree = "<group>";
+		};
+		216C3AEF1FDBE61D006D57C0 /* CurvedIcons */ = {
+			isa = PBXGroup;
+			children = (
+				216C3AF41FDBE633006D57C0 /* BaseIcon Curved.png */,
+				216C3AF31FDBE633006D57C0 /* BMW Curved.png */,
+				216C3AF01FDBE633006D57C0 /* Dark Curved.png */,
+				216C3AF61FDBE633006D57C0 /* Ducati Curved.png */,
+				216C3AF71FDBE633006D57C0 /* HD Curved.png */,
+				216C3AF11FDBE633006D57C0 /* Honda Curved.png */,
+				216C3AF21FDBE633006D57C0 /* Kawasaki Curved.png */,
+				216C3AF51FDBE633006D57C0 /* KTM Curved.png */,
+				216C3AF81FDBE633006D57C0 /* Yamaha Curved.png */,
+			);
+			path = CurvedIcons;
+			sourceTree = "<group>";
+		};
 		21AFB49F1E2B7E7600C50731 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +167,8 @@
 				218BE4031F53A33D00748783 /* WeatherViewController.swift */,
 				21AFB4AF1E2B7E7700C50731 /* Main.storyboard */,
 				21AFB4B21E2B7E7700C50731 /* Assets.xcassets */,
+				216C3AEF1FDBE61D006D57C0 /* CurvedIcons */,
+				21406EEB1FDBD1AF008C536A /* AlternateIcons */,
 				21AFB4B41E2B7E7700C50731 /* LaunchScreen.storyboard */,
 				21AFB4B71E2B7E7700C50731 /* Info.plist */,
 			);
@@ -165,9 +256,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21406EFC1FDBD1C9008C536A /* Kawasaki@2x.png in Resources */,
+				21406EFE1FDBD1C9008C536A /* Yamaha@2x.png in Resources */,
+				216C3AFA1FDBE633006D57C0 /* Honda Curved.png in Resources */,
+				216C3AFE1FDBE633006D57C0 /* KTM Curved.png in Resources */,
+				216C3AFC1FDBE633006D57C0 /* BMW Curved.png in Resources */,
+				21406EFF1FDBD1C9008C536A /* HD@2x.png in Resources */,
+				21406F071FDBD1C9008C536A /* Honda@2x.png in Resources */,
+				21406F0B1FDBD1C9008C536A /* BMW@3x.png in Resources */,
+				21406F081FDBD1C9008C536A /* Ducati@2x.png in Resources */,
+				216C3B001FDBE633006D57C0 /* HD Curved.png in Resources */,
 				21AFB4B61E2B7E7700C50731 /* LaunchScreen.storyboard in Resources */,
+				21406F001FDBD1C9008C536A /* Yamaha@3x.png in Resources */,
+				216C3AFB1FDBE633006D57C0 /* Kawasaki Curved.png in Resources */,
+				216C3AFD1FDBE633006D57C0 /* BaseIcon Curved.png in Resources */,
+				216C3B011FDBE633006D57C0 /* Yamaha Curved.png in Resources */,
+				21406F021FDBD1C9008C536A /* Ducati@3x.png in Resources */,
+				216C3AF91FDBE633006D57C0 /* Dark Curved.png in Resources */,
+				216C3AFF1FDBE633006D57C0 /* Ducati Curved.png in Resources */,
+				21406F051FDBD1C9008C536A /* Dark@3x.png in Resources */,
+				21406EFD1FDBD1C9008C536A /* Kawasaki@3x.png in Resources */,
+				21406F041FDBD1C9008C536A /* HD@3x.png in Resources */,
 				21AFB4B31E2B7E7700C50731 /* Assets.xcassets in Resources */,
+				21406F031FDBD1C9008C536A /* KTM@3x.png in Resources */,
 				21AFB4B11E2B7E7700C50731 /* Main.storyboard in Resources */,
+				21406F061FDBD1C9008C536A /* Dark@2x.png in Resources */,
+				21406F0A1FDBD1C9008C536A /* KTM@2x.png in Resources */,
+				21406F091FDBD1C9008C536A /* Honda@3x.png in Resources */,
+				21406F011FDBD1C9008C536A /* BMW@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
