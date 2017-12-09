@@ -21,7 +21,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var distanceStepper: UIStepper!
     @IBOutlet weak var distanceLabel: UILabel!
     
-    let defaults = UserDefaults()
+    var defaults: UserDefaults!
     var shouldShowTopSpeed = false
     
     enum Units: Double {
@@ -37,6 +37,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.defaults = UserDefaults()
         loadDefaults()
     }
 
@@ -76,22 +77,22 @@ class SettingsViewController: UIViewController {
         if let accuracy = defaults.value(forKey: "locAcc") as? CLLocationAccuracy {
             switch accuracy {
             case kCLLocationAccuracyThreeKilometers:
-                accuracyLabel.text = "Accuracy: 3km"
+                accuracyLabel.text = "Why bother?"
                 accuracyStepper.value = 0
             case kCLLocationAccuracyKilometer:
-                accuracyLabel.text = "Accuracy: 1km"
+                accuracyLabel.text = "Not good"
                 accuracyStepper.value = 1
             case kCLLocationAccuracyHundredMeters:
-                accuracyLabel.text = "Accuracy: 100m"
+                accuracyLabel.text = "Good"
                 accuracyStepper.value = 2
             case kCLLocationAccuracyNearestTenMeters:
-                accuracyLabel.text = "Accuracy: 10m"
+                accuracyLabel.text = "Great"
                 accuracyStepper.value = 3
             case kCLLocationAccuracyBest:
-                accuracyLabel.text = "Best"
+                accuracyLabel.text = "Fantastic"
                 accuracyStepper.value = 4
             case kCLLocationAccuracyBestForNavigation:
-                accuracyLabel.text = "Best for Navigation"
+                accuracyLabel.text = "Amazing (RIP Battery)"
                 accuracyStepper.value = 5
             default: print("Accuracy setting out of range: \(accuracy)"); break
             }
@@ -177,26 +178,27 @@ class SettingsViewController: UIViewController {
     @IBAction func accuracyStepper(_ sender: UIStepper) {
         switch sender.value {
         case 0:
-            accuracyLabel.text = "Accuracy: 3km"
+            accuracyLabel.text = "Why bother?"
             defaults.set(kCLLocationAccuracyThreeKilometers, forKey: "locAcc")
         case 1:
-            accuracyLabel.text = "Accuracy: 1km"
+            accuracyLabel.text = "Not great"
             defaults.set(kCLLocationAccuracyKilometer, forKey: "locAcc")
         case 2:
-            accuracyLabel.text = "Accuracy: 100m"
+            accuracyLabel.text = "Good"
             defaults.set(kCLLocationAccuracyHundredMeters, forKey: "locAcc")
         case 3:
-            accuracyLabel.text = "Accuracy: 10m"
+            accuracyLabel.text = "Great"
             defaults.set(kCLLocationAccuracyNearestTenMeters, forKey: "locAcc")
         case 4:
-            accuracyLabel.text = "Best"
+            accuracyLabel.text = "Fantastic"
             defaults.set(kCLLocationAccuracyBest, forKey: "locAcc")
         case 5:
-            accuracyLabel.text = "Best for Navigation"
+            accuracyLabel.text = "Amazing (RIP battery)"
             defaults.set(kCLLocationAccuracyBestForNavigation, forKey: "locAcc")
         default: print("Accuracy stepper out of range: \(sender.value)"); break
         }
     }
+    
     
     @IBAction func fuelStepper(_ sender: UIStepper) {
         defaults.set(sender.value, forKey: "distanceBeforeFuelLight")
@@ -209,8 +211,17 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    @IBAction func resetFuelTrip(_ sender: UIButton) {
+        print("Resetting fuel trip...")
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "RESET_FUEL_TRIP"), object: nil)
+        defaults.set(0.0, forKey: "currentDistance")
+        defaults.synchronize()
+        print("Set as... \(defaults.value(forKey: "currentDistance")!)")
+    }
+    
     @IBAction func didTapOK(_ sender: UIButton) {
-        // save settings 
+        // save settings
+        
         NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "RELOAD_DEFAULTS")))
         self.dismiss(animated: true, completion: nil)
         

@@ -45,6 +45,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
         super.viewDidLoad()
         leftStrength.transform = leftStrength.transform.rotated(by: CGFloat.pi)
         UIApplication.shared.isIdleTimerDisabled = true
+        rainButton.isHidden = true
+        rainLabel.isHidden = true
         loadDefaults()
     }
         
@@ -53,7 +55,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
     }
     
     func loadDefaults() {
+        print("Loading defaults...")
         let defaults = UserDefaults()
+        
         if let factor: Double = defaults.value(forKey: "units") as? Double {
             units = SettingsViewController.Units(rawValue: factor)
         } else {
@@ -137,14 +141,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
             print("Current distance not found")
         }
         
-        if currentDistance > distanceBeforeFuelLight {
-            fuelButton.isHidden = false
-        } else {
-            fuelButton.isHidden = true
-        }
         
-        rainButton.isHidden = true
-        rainLabel.isHidden = true
+//        if currentDistance > distanceBeforeFuelLight {
+//            fuelButton.isHidden = false
+//        } else {
+//            fuelButton.isHidden = true
+//        }
+        
+
         
         clockTick()
         updateSpeed(speed: 0)
@@ -218,7 +222,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
     }
     
     @IBAction func didTapFuelButton(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Reset fuel mileage?", message: "You made it \(Int(ceil(currentDistance / 1000)))km. Do you want to reset your fuel trip?", preferredStyle: .alert)
+        var currentDist = Int(ceil(currentDistance / 1000))
+        var unit = ""
+        if units == SettingsViewController.Units.KPH {
+            unit = "km"
+        } else if units == SettingsViewController.Units.MPH {
+            currentDist = Int(ceil((currentDistance / 1000) / units!.rawValue))
+            unit = "mi"
+        }
+        let alert = UIAlertController(title: "Reset fuel mileage?", message: "You made it \(currentDist)\(unit). Do you want to reset your fuel trip?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action) in
             self.currentDistance = 0
             self.lastLocation = nil
@@ -235,7 +247,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
     @IBAction func didTapSettings(_ sender: UIButton) {
         NotificationCenter.default.addObserver(self, selector: #selector(self.resetSpeed), name: Notification.Name(rawValue: "RESET_TOP_SPEED"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.loadDefaults), name: Notification.Name(rawValue: "RELOAD_DEFAULTS"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didResetFuelTrip), name: Notification.Name(rawValue: "RESET_FUEL_TRIP"), object: nil)
         self.performSegue(withIdentifier: "showSettings", sender: self)
+    }
+    
+    func didResetFuelTrip() {
+        self.lastLocation = nil
+        self.currentDistance = 0
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -259,10 +277,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
                     let weatherFormatter = DateFormatter()
                     weatherFormatter.locale = Locale(identifier: "en_US_POSIX")
                     weatherFormatter.dateFormat = "ha"
-                    self.rainLabel.text = weatherFormatter.string(from: (sortedRecords.first?.1)!).lowercased()
+                    let firstRain = sortedRecords.filter({$0.0 > 0}).first
+                    self.rainLabel.text = weatherFormatter.string(from: (firstRain!.1)).lowercased()
                     self.rainLabel.isHidden = false
                 } else {
-                    print("Doesn't look like it will raind today")
+                    print("Doesn't look like it will rain today")
                 }
             }
         }
