@@ -29,6 +29,12 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>MotoSpeedo needs to know your location to figure out your speed</string>
+	<key>NSLocationUsageDescription</key>
+	<string>MotoSpeedo needs to know your location to figure out your speed</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>MotoSpeedo needs to know your location to figure out your speed</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>MotoSpeedo needs to know your location to figure out your speed</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -66,60 +72,60 @@
 				<key>UIPrerenderedIcon</key>
 				<false/>
 			</dict>
-            <key>Ducati</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>Ducati</string>
-                </array>
-                <key>UIPrerenderedIcon</key>
-                <false/>
-            </dict>
-            <key>HD</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>HD</string>
-                </array>
-                <key>UIPrerenderedIcon</key>
-                <false/>
-            </dict>
-            <key>Honda</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>Honda</string>
-                </array>
-                <key>UIPrerenderedIcon</key>
-                <false/>
-            </dict>
-            <key>Kawasaki</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>Kawasaki</string>
-                </array>
-                <key>UIPrerenderedIcon</key>
-                <false/>
-            </dict>
-            <key>KTM</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>KTM</string>
-                </array>
-                <key>UIPrerenderedIcon</key>
-                <false/>
-            </dict>
-            <key>Yamaha</key>
-            <dict>
-                <key>CFBundleIconFiles</key>
-                <array>
-                    <string>Yamaha</string>
-                </array>
-                <key>UIPrerenderedIcon</key>
-                <false/>
-            </dict>
+			<key>Ducati</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Ducati</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>HD</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>HD</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>Honda</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Honda</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>Kawasaki</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Kawasaki</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>KTM</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>KTM</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>Yamaha</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Yamaha</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
 		</dict>
 	</dict>
 </dict>

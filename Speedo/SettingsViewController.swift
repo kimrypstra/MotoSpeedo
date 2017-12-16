@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var timeSeg: UISegmentedControl!
     @IBOutlet weak var speedSeg: UISegmentedControl!
@@ -20,9 +20,23 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var accuracyStepper: UIStepper!
     @IBOutlet weak var distanceStepper: UIStepper!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var iconScrollView: UIScrollView!
+    @IBOutlet weak var iconStackView: UIStackView!
     
     var defaults: UserDefaults!
     var shouldShowTopSpeed = false
+    var iconImages: [String: UIImage] = [
+        "BaseIcon" : UIImage(named: "BaseIcon Curved")!,
+        "BMW" : UIImage(named: "BMW Curved")!,
+        "Dark" : UIImage(named: "Dark Curved")!,
+        "Ducati" : UIImage(named: "Ducati Curved")!,
+        "HD" : UIImage(named: "HD Curved")!,
+        "Honda" : UIImage(named: "Honda Curved")!,
+        "Kawasaki" : UIImage(named: "Kawasaki Curved")!,
+        "KTM" : UIImage(named: "KTM Curved")!,
+        "Yamaha" : UIImage(named: "Yamaha Curved")!,
+    ]
+    
     
     enum Units: Double {
         // These constants are used to convert from m/s
@@ -38,10 +52,52 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.defaults = UserDefaults()
+        iconScrollView.delegate = self 
         loadDefaults()
+        populateImagesInStackView(completion: {
+            setScrollViewToCurrentIcon()
+        })
+        
     }
     
-
+    func populateImagesInStackView(completion: () -> ()) {
+        print("Populating images...")
+        for (index, view) in iconStackView.arrangedSubviews.enumerated() {
+            print("Image \(index)")
+            guard let image = view.subviews.first as? UIImageView else {
+                print("This isn't an image...")
+                return
+            }
+            image.image = iconImages[Array(iconImages.keys)[index]]
+            if index == iconImages.count - 1 {
+                completion()
+            }
+        }
+    
+    }
+    
+    func setScrollViewToCurrentIcon() {
+        guard let currentName = UIApplication.shared.alternateIconName else {
+            //No alternate icon set
+            guard let index = Array(iconImages.keys).index(of: "BaseIcon") else {
+                print("Error getting index of icon")
+                return
+            }
+            iconScrollView.setContentOffset(CGPoint(x: CGFloat(index) * iconScrollView.frame.width, y: 0), animated: false)
+            return
+        }
+        guard let index = Array(iconImages.keys).index(of: currentName) else {
+            print("Error getting index of icon")
+            return
+        }
+        iconScrollView.setContentOffset(CGPoint(x: CGFloat(index) * iconScrollView.frame.width, y: 0), animated: false)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let page = Int(scrollView.contentOffset.x / iconScrollView.frame.width)
+        print("Selected \(Array(iconImages.keys)[page])")
+    }
+    
     func loadDefaults() {
         versionLabel.text = "version \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String)"
         
@@ -199,6 +255,19 @@ class SettingsViewController: UIViewController {
     
     @IBAction func didTapOK(_ sender: UIButton) {
         // save settings
+        // Set the new icon
+        let page = Int(iconScrollView.contentOffset.x / iconScrollView.frame.width)
+        let iconName = Array(iconImages.keys)[page]
+        if iconName != "BaseIcon" {
+            UIApplication.shared.setAlternateIconName(Array(iconImages.keys)[page]) { (error) in
+                if error != nil {
+                    print("Error setting icon: \(error)")
+                }
+            }
+        } else {
+            UIApplication.shared.setAlternateIconName(nil, completionHandler: nil)
+        }
+        
         
         NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "RELOAD_DEFAULTS")))
         self.dismiss(animated: true, completion: nil)

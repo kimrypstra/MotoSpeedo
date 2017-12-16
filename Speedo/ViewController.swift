@@ -15,6 +15,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
     @IBInspectable var bgColour: UIColor = UIColor.black
     @IBInspectable var interfaceColour: UIColor = UIColor.white
     
+    @IBOutlet weak var fuelLabel: UILabel!
     @IBOutlet weak var rainLabel: UILabel!
     @IBOutlet weak var fuelButton: UIButton!
     @IBOutlet weak var rightStrength: UIProgressView!
@@ -38,6 +39,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
     var lastLocation: CLLocation?
     var currentDistance: Double = 0
     var distanceBeforeFuelLight: Double!
+    var shouldDoFuelTrip: Bool!
     
     //=======================================================================//
     
@@ -47,6 +49,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
         UIApplication.shared.isIdleTimerDisabled = true
         rainButton.isHidden = true
         rainLabel.isHidden = true
+        fuelButton.isHidden = true
+        fuelLabel.isHidden = true
         loadDefaults()
     }
         
@@ -113,6 +117,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
             }
         }
         
+        if let doFuelTrip = defaults.value(forKey: "shouldDoFuelTrip") as? Bool {
+            self.shouldDoFuelTrip = doFuelTrip
+        } else {
+            self.shouldDoFuelTrip = true
+            defaults.set(true, forKey: "shouldDoFuelTrip")
+        }
+        
         if let accuracy = defaults.value(forKey: "locAcc") as? CLLocationAccuracy {
             locMan.desiredAccuracy = accuracy
         } else {
@@ -133,23 +144,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
             currentDistance = current
             if currentDistance > distanceBeforeFuelLight {
                 fuelButton.isHidden = false
+                fuelLabel.isHidden = false
+                var distance = ceil(current / 1000)
+                var distanceUnits = "km"
+                if units == SettingsViewController.Units.MPH {
+                    distance = distance / units!.rawValue
+                    distanceUnits = "mi"
+                }
+                fuelLabel.text = "\(Int(distance))\(distanceUnits)"
+                
             } else {
                 fuelButton.isHidden = true
+                fuelLabel.isHidden = true
             }
         } else {
             // no need to set a default value for this one
             print("Current distance not found")
         }
-        
-        
-//        if currentDistance > distanceBeforeFuelLight {
-//            fuelButton.isHidden = false
-//        } else {
-//            fuelButton.isHidden = true
-//        }
-        
 
-        
         clockTick()
         updateSpeed(speed: 0)
         setTheme()
@@ -184,43 +196,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
             print("Requesting authorization...")
             locMan.requestWhenInUseAuthorization()
         } else {
+            locMan.startUpdatingLocation()
             print("Authorized. Starting location services...")
             if let accuracy = UserDefaults().value(forKey: "locAcc") as? CLLocationAccuracy {
                 locMan.desiredAccuracy = accuracy
-                locMan.startUpdatingLocation()
+                print("Acc: \(accuracy)")
             } else {
                 locMan.desiredAccuracy = kCLLocationAccuracyHundredMeters
-                locMan.startUpdatingLocation()
+                print("Acc: Failover to 100m")
             }
-            
         }
-        
+    }
 
-
-    }
-    
-    func updateSpeed(speed: Double) {
-        guard speed > 0 else {
-            speedLabel.text = "0"
-            return 
-        }
-        
-        let speedInt = Int(ceil(speed * units!.rawValue))
-        if speed > maxSpeed {
-            saveMaxSpeed(speed: speed)
-        }
-        if speedLabel != nil {
-            speedLabel.text = "\(speedInt)"
-        }
-    }
- 
-    func resetSpeed() {
-        maxSpeed = 0
-        if maxSpeedLabel != nil {
-            maxSpeedLabel.text = ""
-        }
-    }
-    
     @IBAction func didTapFuelButton(_ sender: UIButton) {
         var currentDist = Int(ceil(currentDistance / 1000))
         var unit = ""
@@ -237,6 +224,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
             UserDefaults().setValue(self.currentDistance, forKey: "currentDistance")
             print("Reset. Key reads: \(UserDefaults().value(forKey: "currentDistance")!)")
             self.fuelButton.isHidden = true
+            self.fuelLabel.isHidden = true
         }))
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
             return
@@ -269,7 +257,63 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
         }
     }
     
+    func updateSpeed(speed: Double) {
+        guard speed >= 0 else {
+            speedLabel.text = "0"
+            return
+        }
+        let speedInt = Int(ceil(speed * units!.rawValue))
+        if speed > maxSpeed {
+            saveMaxSpeed(speed: speed)
+        }
+        if speedLabel != nil {
+            speedLabel.text = "\(speedInt)"
+        }
+    }
+    
+    func resetSpeed() {
+        maxSpeed = 0
+        if maxSpeedLabel != nil {
+            maxSpeedLabel.text = ""
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location Error: \(error.localizedDescription)")
+        locMan.startUpdatingLocation()
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+      
+        if let speed = locations.first?.speed {
+            updateSpeed(speed: speed)
+        }
+        
+        UIView.animate(withDuration: 0.1, animations: {
+            self.leftStrength.alpha = 1
+            self.rightStrength.alpha = 1
+        }) { (_) in
+            UIView.animate(withDuration: 0.3, animations: {
+                self.leftStrength.alpha = 0.5
+                self.rightStrength.alpha = 0.5
+            })
+        }
+        
+        var locationScore: Float = 0
+        switch locations.first?.horizontalAccuracy as! Double {
+        case -50...0: locationScore = 0
+        case 0...10: locationScore = 1
+        case 10...20: locationScore = 0.8
+        case 20...30: locationScore = 0.6
+        case 30...40: locationScore = 0.4
+        case 40...50: locationScore = 0.2
+        case 50...100: locationScore = 0.1
+        default: locationScore = 0
+        }
+        leftStrength.setProgress(locationScore, animated: true)
+        rightStrength.setProgress(locationScore, animated: true)
+        
+        
         if !weatherHasBeenRequested {
             weatherHasBeenRequested = true
             weatherMan.willItRainToday(lattitude: String(locMan.location!.coordinate.latitude), longitude: String(locMan.location!.coordinate.longitude)) { weatherRecords in
@@ -289,46 +333,42 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
             }
         }
 
-        var locationScore: Float = 0
-        switch locations.first?.horizontalAccuracy as! Double {
-        case -50...0: locationScore = 0
-        case 0...10: locationScore = 1
-        case 10...20: locationScore = 0.8
-        case 20...30: locationScore = 0.6
-        case 30...40: locationScore = 0.4
-        case 40...50: locationScore = 0.2
-        case 50...100: locationScore = 0.1
-        default: locationScore = 0
-        }
-        leftStrength.setProgress(locationScore, animated: true)
-        rightStrength.setProgress(locationScore, animated: true)
-        if let speed = locations.first?.speed {
-            updateSpeed(speed: speed)
+        if shouldDoFuelTrip {
+            if lastLocation != nil {
+                guard let distance = locations.first?.distance(from: lastLocation!) as? Double else {
+                    print("No distance")
+                    return
+                }
+                currentDistance += distance
+                //print("Current distance: \(currentDistance)")
+                UserDefaults().setValue(currentDistance, forKey: "currentDistance")
+                lastLocation = locations.first
+            } else {
+                lastLocation = locations.first
+            }
+            
+            if currentDistance > distanceBeforeFuelLight {
+                if fuelButton.isHidden == true {
+                    playSound()
+                    fuelButton.isHidden = false
+                    fuelLabel.isHidden = false
+                }
+                var distance = currentDistance / 1000
+                var distanceUnits = "km"
+                if units == SettingsViewController.Units.MPH {
+                    distance = ceil(distance / units!.rawValue)
+                    distanceUnits = "mi"
+                }
+                fuelLabel.text = "\(Int(distance))\(distanceUnits)"
+            } else {
+                if fuelButton.isHidden == false {
+                    fuelButton.isHidden = true
+                    fuelLabel.isHidden = true
+                }
+            }
         }
         
-        if lastLocation != nil {
-            guard let distance = locations.first?.distance(from: lastLocation!) as? Double else {
-                print("No distance")
-                return
-            }
-            currentDistance += distance
-            //print("Current distance: \(currentDistance)")
-            UserDefaults().setValue(currentDistance, forKey: "currentDistance")
-            lastLocation = locations.first
-        } else {
-            lastLocation = locations.first
-        }
         
-        if currentDistance > distanceBeforeFuelLight {
-            if fuelButton.isHidden == true {
-                playSound()
-                fuelButton.isHidden = false
-            }
-        } else {
-            if fuelButton.isHidden == false {
-                fuelButton.isHidden = true
-            }
-        }
     }
     
     func playSound() {
