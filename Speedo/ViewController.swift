@@ -107,7 +107,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
         if let shouldShowTopSpeed = defaults.value(forKey: "displayTopSpeed") as? Bool {
             if shouldShowTopSpeed {
                 maxSpeedLabel.isHidden = false
-                if maxSpeed != nil && maxSpeed > 0 {
+                if maxSpeed > 0 {
                     maxSpeedLabel.text = "\(Int(ceil(maxSpeed * units!.rawValue)))\(UOM!)"
                 }
                 
@@ -285,9 +285,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
       
-        if let speed = locations.first?.speed {
-            updateSpeed(speed: speed)
+        guard let firstLocation = locations.first else {
+            print("Error: No first location")
+            return
         }
+        
+        updateSpeed(speed: firstLocation.speed)
         
         UIView.animate(withDuration: 0.1, animations: {
             self.leftStrength.alpha = 1
@@ -300,7 +303,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
         }
         
         var locationScore: Float = 0
-        switch locations.first?.horizontalAccuracy as! Double {
+        switch firstLocation.horizontalAccuracy {
         case -50...0: locationScore = 0
         case 0...10: locationScore = 1
         case 10...20: locationScore = 0.8
@@ -316,7 +319,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
         
         if !weatherHasBeenRequested {
             weatherHasBeenRequested = true
-            weatherMan.willItRainToday(lattitude: String(locMan.location!.coordinate.latitude), longitude: String(locMan.location!.coordinate.longitude)) { weatherRecords in
+            weatherMan.willItRainToday(lattitude: String(firstLocation.coordinate.latitude), longitude: String(firstLocation.coordinate.longitude)) { weatherRecords in
                 if weatherRecords.count > 0 {
                     self.rainButton.isHidden = false
                     let sortedRecords = weatherRecords.sorted(by: {$0.1 < $1.1})
@@ -335,16 +338,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
 
         if shouldDoFuelTrip {
             if lastLocation != nil {
-                guard let distance = locations.first?.distance(from: lastLocation!) as? Double else {
-                    print("No distance")
-                    return
-                }
+                let distance = firstLocation.distance(from: lastLocation!)
                 currentDistance += distance
-                //print("Current distance: \(currentDistance)")
                 UserDefaults().setValue(currentDistance, forKey: "currentDistance")
-                lastLocation = locations.first
+                lastLocation = firstLocation
             } else {
-                lastLocation = locations.first
+                lastLocation = firstLocation
             }
             
             if currentDistance > distanceBeforeFuelLight {
@@ -367,8 +366,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
                 }
             }
         }
-        
-        
     }
     
     func playSound() {

@@ -18,7 +18,6 @@ class WeatherManager: NSObject, URLSessionDelegate {
     
     func willItRainToday(lattitude: String, longitude: String, completion: @escaping ([(Double, Date, Double)]) -> ()) {
 
-        let queue = DispatchQueue(label: "com.KimRypstra.Speedo.Weather", qos: .background, attributes: .concurrent, autoreleaseFrequency: .inherit, target: .main)
         let group = DispatchGroup()
         group.enter()
         sendRequest(lattitude: lattitude, longitude: longitude) { (error, data) in
@@ -32,7 +31,7 @@ class WeatherManager: NSObject, URLSessionDelegate {
                     }
                 })
             } else {
-                print("Error: \(error)")
+                print("Error: \(error?.localizedDescription ?? "Unknown Error")")
                 group.leave()
             }
         }

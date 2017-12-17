@@ -261,7 +261,7 @@ class SettingsViewController: UIViewController, UIScrollViewDelegate {
         if iconName != "BaseIcon" {
             UIApplication.shared.setAlternateIconName(Array(iconImages.keys)[page]) { (error) in
                 if error != nil {
-                    print("Error setting icon: \(error)")
+                    print("Error setting icon: \(error?.localizedDescription ?? "Unknown Error")")
                 }
             }
         } else {
