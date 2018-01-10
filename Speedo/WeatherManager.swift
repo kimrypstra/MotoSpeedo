@@ -91,7 +91,7 @@ class WeatherManager: NSObject, URLSessionDelegate {
             for hour in dataStage {
                 let time = Date(timeIntervalSince1970: Double(hour["time"] as! Int))
                 let interval = time.timeIntervalSinceNow
-                if interval < 43200 && interval >= -60 {
+                if interval < (13 * (60 * 60)) && interval >= -60 {
                     print("Time: \(time); Probability: \(hour["precipProbability"]!)")
                     guard let probability = hour["precipProbability"] as? Double else {break}
                     guard let intensity = hour["precipIntensity"] as? Double else {break}

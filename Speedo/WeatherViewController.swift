@@ -57,7 +57,7 @@ class WeatherViewController: UIViewController {
         chartView.xAxis.drawGridLinesEnabled = true
         chartView.xAxis.granularity = 1
         chartView.xAxis.axisMinimum = 0
-        chartView.xAxis.axisMaximum = 11
+        chartView.xAxis.axisMaximum = 12
         chartView.xAxis.drawAxisLineEnabled = false
         chartView.xAxis.drawLabelsEnabled = true
         chartView.xAxis.labelPosition = .bottom

@@ -194,6 +194,7 @@ class SettingsViewController: UIViewController, UIScrollViewDelegate {
         if sender.isOn {
             defaults.setValue(true, forKey: "shouldDoFuelTrip")
         } else {
+            defaults.setValue(0, forKey: "currentDistance")
             defaults.setValue(false, forKey: "shouldDoFuelTrip")
         }
     }
@@ -220,22 +221,22 @@ class SettingsViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func accuracyStepper(_ sender: UIStepper) {
         switch sender.value {
         case 0:
-            accuracyLabel.text = "Why bother?"
+            accuracyLabel.text = "Accuracy: Why bother?"
             defaults.set(kCLLocationAccuracyThreeKilometers, forKey: "locAcc")
         case 1:
-            accuracyLabel.text = "Not great"
+            accuracyLabel.text = "Accuracy: Not great"
             defaults.set(kCLLocationAccuracyKilometer, forKey: "locAcc")
         case 2:
-            accuracyLabel.text = "Good"
+            accuracyLabel.text = "Accuracy: Good"
             defaults.set(kCLLocationAccuracyHundredMeters, forKey: "locAcc")
         case 3:
-            accuracyLabel.text = "Great"
+            accuracyLabel.text = "Accuracy: Great"
             defaults.set(kCLLocationAccuracyNearestTenMeters, forKey: "locAcc")
         case 4:
-            accuracyLabel.text = "Fantastic"
+            accuracyLabel.text = "Accuracy: Fantastic"
             defaults.set(kCLLocationAccuracyBest, forKey: "locAcc")
         case 5:
-            accuracyLabel.text = "Amazing (RIP battery)"
+            accuracyLabel.text = "Accuracy: Amazing (RIP battery)"
             defaults.set(kCLLocationAccuracyBestForNavigation, forKey: "locAcc")
         default: print("Accuracy stepper out of range: \(sender.value)"); break
         }

@@ -40,6 +40,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
     var currentDistance: Double = 0
     var distanceBeforeFuelLight: Double!
     var shouldDoFuelTrip: Bool!
+    var fuelTripDemoMode = true
     
     //=======================================================================//
     
@@ -340,6 +341,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
             if lastLocation != nil {
                 let distance = firstLocation.distance(from: lastLocation!)
                 currentDistance += distance
+                //currentDistance = 167 // TODO:- COMMENT OUT BEFORE RELEASE
                 UserDefaults().setValue(currentDistance, forKey: "currentDistance")
                 lastLocation = firstLocation
             } else {
@@ -364,6 +366,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
                     fuelButton.isHidden = true
                     fuelLabel.isHidden = true
                 }
+            }
+            
+            if fuelTripDemoMode {
+                var distanceUnits = "km"
+                var distance = currentDistance / 1000
+                if units == SettingsViewController.Units.MPH {
+                    distance = ceil(distance / units!.rawValue)
+                    distanceUnits = "mi"
+                }
+                fuelButton.isHidden = false
+                fuelLabel.isHidden = false
+                fuelLabel.text = "190\(distanceUnits)"
             }
         }
     }
