@@ -16,7 +16,7 @@ class WeatherManager: NSObject, URLSessionDelegate {
         return rainRecords
     }
     
-    func willItRainToday(lattitude: String, longitude: String, completion: @escaping ([(Double, Date, Double)]) -> ()) {
+    func willItRainToday(lattitude: String, longitude: String, completion: @escaping ([(Probability: Double, Time: Date, Intensity: Double)]) -> ()) {
 
         let group = DispatchGroup()
         group.enter()
@@ -79,8 +79,8 @@ class WeatherManager: NSObject, URLSessionDelegate {
         dataTask.resume()
     }
     
-    private func checkResponseForRain(data: Data, completion: ([(Double, Date, Double)]) -> ()) {
-        var arrayOfRecords = [(Double, Date, Double)]()
+    private func checkResponseForRain(data: Data, completion: ([(Probability: Double, Time: Date, Intensity: Double)]) -> ()) {
+        var arrayOfRecords = [(Probability: Double, Time: Date, Intensity: Double)]()
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: AnyObject]
             //print(json)

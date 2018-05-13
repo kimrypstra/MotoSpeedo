@@ -40,7 +40,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
     var currentDistance: Double = 0
     var distanceBeforeFuelLight: Double!
     var shouldDoFuelTrip: Bool!
-    var fuelTripDemoMode = true
+    var fuelTripDemoMode = false
     
     //=======================================================================//
     
@@ -323,13 +323,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
             weatherMan.willItRainToday(lattitude: String(firstLocation.coordinate.latitude), longitude: String(firstLocation.coordinate.longitude)) { weatherRecords in
                 if weatherRecords.count > 0 {
                     self.rainButton.isHidden = false
-                    let sortedRecords = weatherRecords.sorted(by: {$0.1 < $1.1})
+                    let sortedRecords = weatherRecords.sorted(by: {$0.Time < $1.Time})
                     print("Received \(sortedRecords.count) records")
                     let weatherFormatter = DateFormatter()
                     weatherFormatter.locale = Locale(identifier: "en_US_POSIX")
                     weatherFormatter.dateFormat = "ha"
-                    let firstRain = sortedRecords.filter({$0.0 > 0}).first
-                    self.rainLabel.text = weatherFormatter.string(from: (firstRain!.1)).lowercased()
+                    guard let firstRain = sortedRecords.filter({$0.Probability > 0}).first else {
+                        print("firstRain is nil")
+                        return
+                    }
+                    self.rainLabel.text = weatherFormatter.string(from: (firstRain.Time)).lowercased()
                     self.rainLabel.isHidden = false
                 } else {
                     print("Doesn't look like it will rain today")

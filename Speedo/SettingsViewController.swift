@@ -150,9 +150,9 @@ class SettingsViewController: UIViewController, UIScrollViewDelegate {
             default: print("Accuracy setting out of range: \(accuracy)"); break
             }
         } else {
-            defaults.set(kCLLocationAccuracyHundredMeters, forKey: "locAcc")
-            accuracyLabel.text = "Accuracy: 100m"
-            print("Couldn't load accuracy; set to 100m")
+            defaults.set(kCLLocationAccuracyNearestTenMeters, forKey: "locAcc")
+            accuracyLabel.text = "Accuracy: Great"
+            print("Couldn't load accuracy; set to 10m")
         }
         
         if let fuelDistance = defaults.value(forKey: "distanceBeforeFuelLight") as? Double {
