@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		212659AD20A84CC100A7743F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212659AC20A84CC100A7743F /* Charts.framework */; };
-		212659AE20A84CC100A7743F /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 212659AC20A84CC100A7743F /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		212659B120A84D7300A7743F /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212659B020A84D7300A7743F /* WeatherResponse.swift */; };
 		212659B320A9959400A7743F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212659B220A9959400A7743F /* Constants.swift */; };
+		212659B820A99B4E00A7743F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212659B720A99B4E00A7743F /* Charts.framework */; };
+		212659BA20A99BEB00A7743F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212659B920A99BEB00A7743F /* Charts.framework */; };
+		212659BB20A99BEB00A7743F /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 212659B920A99BEB00A7743F /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		21406EFC1FDBD1C9008C536A /* Kawasaki@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EEC1FDBD1C7008C536A /* Kawasaki@2x.png */; };
 		21406EFD1FDBD1C9008C536A /* Kawasaki@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EED1FDBD1C7008C536A /* Kawasaki@3x.png */; };
 		21406EFE1FDBD1C9008C536A /* Yamaha@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EEE1FDBD1C7008C536A /* Yamaha@2x.png */; };
@@ -44,7 +45,6 @@
 		21AFB4B61E2B7E7700C50731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB4B41E2B7E7700C50731 /* LaunchScreen.storyboard */; };
 		21EF812D1E2BAF0A00D95102 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EF812C1E2BAF0A00D95102 /* SettingsViewController.swift */; };
 		21F9AF0A1F4C59900009B216 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F9AF091F4C59900009B216 /* WeatherManager.swift */; };
-		7852C1822658E8DF40C9EBA3 /* Pods_Speedo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961D947F256E6AB5E90D0D44 /* Pods_Speedo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,7 +54,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				212659AE20A84CC100A7743F /* Charts.framework in Embed Frameworks */,
+				212659BB20A99BEB00A7743F /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,9 +62,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		212659AC20A84CC100A7743F /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		212659B020A84D7300A7743F /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		212659B220A9959400A7743F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		212659B420A99AFD00A7743F /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		212659B720A99B4E00A7743F /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		212659B920A99BEB00A7743F /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21406EEC1FDBD1C7008C536A /* Kawasaki@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Kawasaki@2x.png"; sourceTree = "<group>"; };
 		21406EED1FDBD1C7008C536A /* Kawasaki@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Kawasaki@3x.png"; sourceTree = "<group>"; };
 		21406EEE1FDBD1C7008C536A /* Yamaha@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Yamaha@2x.png"; sourceTree = "<group>"; };
@@ -101,9 +103,6 @@
 		21DAB2A91FD77D1F00B76C28 /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21EF812C1E2BAF0A00D95102 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		21F9AF091F4C59900009B216 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
-		267ED9993123002138DE7726 /* Pods-Speedo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Speedo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Speedo/Pods-Speedo.debug.xcconfig"; sourceTree = "<group>"; };
-		961D947F256E6AB5E90D0D44 /* Pods_Speedo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Speedo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B26082F44D1D5D2DEF35A5A1 /* Pods-Speedo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Speedo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Speedo/Pods-Speedo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,8 +110,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				212659AD20A84CC100A7743F /* Charts.framework in Frameworks */,
-				7852C1822658E8DF40C9EBA3 /* Pods_Speedo.framework in Frameworks */,
+				212659B820A99B4E00A7743F /* Charts.framework in Frameworks */,
+				212659BA20A99BEB00A7743F /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,10 +160,10 @@
 		21AFB49F1E2B7E7600C50731 = {
 			isa = PBXGroup;
 			children = (
-				212659AC20A84CC100A7743F /* Charts.framework */,
+				212659B920A99BEB00A7743F /* Charts.framework */,
+				212659B420A99AFD00A7743F /* Charts.framework */,
 				21AFB4AA1E2B7E7700C50731 /* Speedo */,
 				21AFB4A91E2B7E7700C50731 /* Products */,
-				ABAF99D84792241D78EBE910 /* Pods */,
 				E5674D0C8C20C95F543D4972 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -198,20 +197,11 @@
 			path = Speedo;
 			sourceTree = "<group>";
 		};
-		ABAF99D84792241D78EBE910 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				267ED9993123002138DE7726 /* Pods-Speedo.debug.xcconfig */,
-				B26082F44D1D5D2DEF35A5A1 /* Pods-Speedo.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		E5674D0C8C20C95F543D4972 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				212659B720A99B4E00A7743F /* Charts.framework */,
 				21DAB2A91FD77D1F00B76C28 /* Charts.framework */,
-				961D947F256E6AB5E90D0D44 /* Pods_Speedo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -223,12 +213,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 21AFB4BA1E2B7E7700C50731 /* Build configuration list for PBXNativeTarget "Speedo" */;
 			buildPhases = (
-				4CB12B45EB19831C81A65949 /* [CP] Check Pods Manifest.lock */,
 				21AFB4A41E2B7E7700C50731 /* Sources */,
 				21AFB4A51E2B7E7700C50731 /* Frameworks */,
 				21AFB4A61E2B7E7700C50731 /* Resources */,
-				00DA72307FBD3484651C248F /* [CP] Embed Pods Frameworks */,
-				DDBCBB64C78CB626793AC727 /* [CP] Copy Pods Resources */,
 				212659AF20A84CC100A7743F /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -312,54 +299,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		00DA72307FBD3484651C248F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Speedo/Pods-Speedo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4CB12B45EB19831C81A65949 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		DDBCBB64C78CB626793AC727 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Speedo/Pods-Speedo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		21AFB4A41E2B7E7700C50731 /* Sources */ = {
@@ -503,7 +442,6 @@
 		};
 		21AFB4BB1E2B7E7700C50731 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 267ED9993123002138DE7726 /* Pods-Speedo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = YBCCTWH2WW;
@@ -517,7 +455,6 @@
 		};
 		21AFB4BC1E2B7E7700C50731 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B26082F44D1D5D2DEF35A5A1 /* Pods-Speedo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = YBCCTWH2WW;

@@ -93,7 +93,7 @@ class WeatherManager: NSObject, URLSessionDelegate {
         do {
             // Decode
             let records = try JSONDecoder().decode(WeatherResponse.self, from: data)
-            print(records)
+            //print(records)
             
             // Discard records out of our time range
             weatherRecords = records.weatherRecords().filter({$0.date().timeIntervalSinceNow < (13 * (60 * 60)) && $0.date().timeIntervalSinceNow >= -60})
