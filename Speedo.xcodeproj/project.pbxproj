@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		212659B120A84D7300A7743F /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212659B020A84D7300A7743F /* WeatherResponse.swift */; };
 		212659B320A9959400A7743F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212659B220A9959400A7743F /* Constants.swift */; };
-		212659B820A99B4E00A7743F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212659B720A99B4E00A7743F /* Charts.framework */; };
 		212659BA20A99BEB00A7743F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212659B920A99BEB00A7743F /* Charts.framework */; };
 		212659BB20A99BEB00A7743F /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 212659B920A99BEB00A7743F /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		21406EFC1FDBD1C9008C536A /* Kawasaki@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EEC1FDBD1C7008C536A /* Kawasaki@2x.png */; };
@@ -64,7 +63,6 @@
 /* Begin PBXFileReference section */
 		212659B020A84D7300A7743F /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		212659B220A9959400A7743F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		212659B420A99AFD00A7743F /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		212659B720A99B4E00A7743F /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		212659B920A99BEB00A7743F /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21406EEC1FDBD1C7008C536A /* Kawasaki@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Kawasaki@2x.png"; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				212659B820A99B4E00A7743F /* Charts.framework in Frameworks */,
 				212659BA20A99BEB00A7743F /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,7 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				212659B920A99BEB00A7743F /* Charts.framework */,
-				212659B420A99AFD00A7743F /* Charts.framework */,
 				21AFB4AA1E2B7E7700C50731 /* Speedo */,
 				21AFB4A91E2B7E7700C50731 /* Products */,
 				E5674D0C8C20C95F543D4972 /* Frameworks */,
@@ -234,7 +230,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Kim Rypstra";
 				TargetAttributes = {
 					21AFB4A71E2B7E7700C50731 = {
@@ -350,6 +346,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -357,6 +354,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -405,6 +403,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -412,6 +411,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
