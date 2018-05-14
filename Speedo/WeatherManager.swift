@@ -9,22 +9,26 @@
 import UIKit
 
 class WeatherManager: NSObject, URLSessionDelegate {
-    private let key: String = "4cf7ca97f8196f27d236c05a9bc6eca6"
-    private var rainRecords = [(Double, Date, Double)]()
-    // Probability, Time, Intensity
-    func getRainRecords() -> [(Double, Date, Double)] {
+    fileprivate let key: String = DS_KEY
+    private var rainRecords = [WeatherRecord]()
+    
+    func getRainRecords() -> [WeatherRecord] {
         return rainRecords
     }
     
-    func willItRainToday(lattitude: String, longitude: String, completion: @escaping ([(Probability: Double, Time: Date, Intensity: Double)]) -> ()) {
-
+    func willItRainToday(lattitude: String, longitude: String, completion: @escaping (WeatherRecord?) -> ()) {
+        /// Requests weather information, saves records, then returns the first occurance of a record with a probability greater than or equal to 1%
         let group = DispatchGroup()
         group.enter()
         sendRequest(lattitude: lattitude, longitude: longitude) { (error, data) in
             if data != nil {
                 self.checkResponseForRain(data: data!, completion: { weatherRecords in
-                    if weatherRecords.count > 0 {
-                        self.rainRecords = weatherRecords
+                    guard weatherRecords != nil else {
+
+                        return
+                    }
+                    if weatherRecords!.count > 0 {
+                        self.rainRecords = weatherRecords!
                         group.leave()
                     } else {
                         group.leave()
@@ -37,7 +41,12 @@ class WeatherManager: NSObject, URLSessionDelegate {
         }
         
         group.notify(queue: DispatchQueue.main) {
-            completion(self.rainRecords)
+            guard let firstRain = self.rainRecords.filter({$0.probability >= 1}).first else {
+                print("No rain probability >= 1% found")
+                completion(nil)
+                return
+            }
+            completion(firstRain)
         }
     }
     
@@ -59,7 +68,7 @@ class WeatherManager: NSObject, URLSessionDelegate {
         request.timeoutInterval = 60
         
         // Debug
-        print("Sending request to: \(urlString)")
+        // print("Sending request to: \(urlString)")
         
         // Send the request
         dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) in
@@ -79,33 +88,26 @@ class WeatherManager: NSObject, URLSessionDelegate {
         dataTask.resume()
     }
     
-    private func checkResponseForRain(data: Data, completion: ([(Probability: Double, Time: Date, Intensity: Double)]) -> ()) {
-        var arrayOfRecords = [(Probability: Double, Time: Date, Intensity: Double)]()
+    private func checkResponseForRain(data: Data, completion: ([WeatherRecord]?) -> ()) {
+        var weatherRecords = [WeatherRecord]()
         do {
-            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: AnyObject]
-            //print(json)
+            // Decode
+            let records = try JSONDecoder().decode(WeatherResponse.self, from: data)
+            print(records)
             
-            guard let hourlyStage = json["hourly"] as? [String: AnyObject] else {print("Error stage 1"); return}
-            guard let dataStage = hourlyStage["data"] as? [[String: AnyObject]] else {print("Error stage 2"); return}
-
-            for hour in dataStage {
-                let time = Date(timeIntervalSince1970: Double(hour["time"] as! Int))
-                let interval = time.timeIntervalSinceNow
-                if interval < (13 * (60 * 60)) && interval >= -60 {
-                    print("Time: \(time); Probability: \(hour["precipProbability"]!)")
-                    guard let probability = hour["precipProbability"] as? Double else {break}
-                    guard let intensity = hour["precipIntensity"] as? Double else {break}
-                    // Probability, Time, Intensity
-                    arrayOfRecords.append((probability * 100, time, intensity))
-                }
-            }
+            // Discard records out of our time range
+            weatherRecords = records.weatherRecords().filter({$0.date().timeIntervalSinceNow < (13 * (60 * 60)) && $0.date().timeIntervalSinceNow >= -60})
             
-            completion(arrayOfRecords)
+            // Sort by time
+            weatherRecords.sort(by: {$0.time < $1.time})
+            
+            // Return the sorted records
+            completion(weatherRecords)
             
         } catch let error {
             print("Error decoding data to JSON: \(error)")
-            completion(arrayOfRecords)
+            completion(nil)
         }
     }
 }
-//-43.148410, 147.071662
+

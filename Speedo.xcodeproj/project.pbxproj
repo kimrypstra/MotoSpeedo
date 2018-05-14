@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		212659AD20A84CC100A7743F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212659AC20A84CC100A7743F /* Charts.framework */; };
+		212659AE20A84CC100A7743F /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 212659AC20A84CC100A7743F /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		212659B120A84D7300A7743F /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212659B020A84D7300A7743F /* WeatherResponse.swift */; };
+		212659B320A9959400A7743F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212659B220A9959400A7743F /* Constants.swift */; };
 		21406EFC1FDBD1C9008C536A /* Kawasaki@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EEC1FDBD1C7008C536A /* Kawasaki@2x.png */; };
 		21406EFD1FDBD1C9008C536A /* Kawasaki@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EED1FDBD1C7008C536A /* Kawasaki@3x.png */; };
 		21406EFE1FDBD1C9008C536A /* Yamaha@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21406EEE1FDBD1C7008C536A /* Yamaha@2x.png */; };
@@ -38,13 +42,29 @@
 		21AFB4B11E2B7E7700C50731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB4AF1E2B7E7700C50731 /* Main.storyboard */; };
 		21AFB4B31E2B7E7700C50731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB4B21E2B7E7700C50731 /* Assets.xcassets */; };
 		21AFB4B61E2B7E7700C50731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB4B41E2B7E7700C50731 /* LaunchScreen.storyboard */; };
-		21DAB2A81FD77D1F00B76C28 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21DAB2A91FD77D1F00B76C28 /* Charts.framework */; };
 		21EF812D1E2BAF0A00D95102 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EF812C1E2BAF0A00D95102 /* SettingsViewController.swift */; };
 		21F9AF0A1F4C59900009B216 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F9AF091F4C59900009B216 /* WeatherManager.swift */; };
 		7852C1822658E8DF40C9EBA3 /* Pods_Speedo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961D947F256E6AB5E90D0D44 /* Pods_Speedo.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		212659AF20A84CC100A7743F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				212659AE20A84CC100A7743F /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		212659AC20A84CC100A7743F /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		212659B020A84D7300A7743F /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
+		212659B220A9959400A7743F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		21406EEC1FDBD1C7008C536A /* Kawasaki@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Kawasaki@2x.png"; sourceTree = "<group>"; };
 		21406EED1FDBD1C7008C536A /* Kawasaki@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Kawasaki@3x.png"; sourceTree = "<group>"; };
 		21406EEE1FDBD1C7008C536A /* Yamaha@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Yamaha@2x.png"; sourceTree = "<group>"; };
@@ -91,7 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21DAB2A81FD77D1F00B76C28 /* Charts.framework in Frameworks */,
+				212659AD20A84CC100A7743F /* Charts.framework in Frameworks */,
 				7852C1822658E8DF40C9EBA3 /* Pods_Speedo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,6 +161,7 @@
 		21AFB49F1E2B7E7600C50731 = {
 			isa = PBXGroup;
 			children = (
+				212659AC20A84CC100A7743F /* Charts.framework */,
 				21AFB4AA1E2B7E7700C50731 /* Speedo */,
 				21AFB4A91E2B7E7700C50731 /* Products */,
 				ABAF99D84792241D78EBE910 /* Pods */,
@@ -164,6 +185,7 @@
 				21AFB4AD1E2B7E7700C50731 /* ViewController.swift */,
 				21EF812C1E2BAF0A00D95102 /* SettingsViewController.swift */,
 				21F9AF091F4C59900009B216 /* WeatherManager.swift */,
+				212659B020A84D7300A7743F /* WeatherResponse.swift */,
 				218BE4031F53A33D00748783 /* WeatherViewController.swift */,
 				21AFB4AF1E2B7E7700C50731 /* Main.storyboard */,
 				21AFB4B21E2B7E7700C50731 /* Assets.xcassets */,
@@ -171,6 +193,7 @@
 				21406EEB1FDBD1AF008C536A /* AlternateIcons */,
 				21AFB4B41E2B7E7700C50731 /* LaunchScreen.storyboard */,
 				21AFB4B71E2B7E7700C50731 /* Info.plist */,
+				212659B220A9959400A7743F /* Constants.swift */,
 			);
 			path = Speedo;
 			sourceTree = "<group>";
@@ -206,6 +229,7 @@
 				21AFB4A61E2B7E7700C50731 /* Resources */,
 				00DA72307FBD3484651C248F /* [CP] Embed Pods Frameworks */,
 				DDBCBB64C78CB626793AC727 /* [CP] Copy Pods Resources */,
+				212659AF20A84CC100A7743F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -343,8 +367,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				21AFB4AE1E2B7E7700C50731 /* ViewController.swift in Sources */,
+				212659B120A84D7300A7743F /* WeatherResponse.swift in Sources */,
 				218BE4041F53A33D00748783 /* WeatherViewController.swift in Sources */,
 				21AFB4AC1E2B7E7700C50731 /* AppDelegate.swift in Sources */,
+				212659B320A9959400A7743F /* Constants.swift in Sources */,
 				21F9AF0A1F4C59900009B216 /* WeatherManager.swift in Sources */,
 				21EF812D1E2BAF0A00D95102 /* SettingsViewController.swift in Sources */,
 			);
@@ -485,7 +511,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kimrypstra.motospeedo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -499,7 +525,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kimrypstra.motospeedo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

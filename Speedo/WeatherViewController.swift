@@ -12,8 +12,7 @@ import Charts
 class WeatherViewController: UIViewController {
 
     @IBOutlet weak var chartView: LineChartView!
-    var weatherRecords = [(Double, Date, Double)]()
-    // Probability, Time, Intensity
+    var weatherRecords = [WeatherRecord]()
     var chartRecords = [ChartDataEntry]()
     var weatherFormatter = DateFormatter()
     
@@ -25,25 +24,21 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         weatherFormatter.locale = Locale(identifier: "en_US_POSIX")
         weatherFormatter.dateFormat = "ha"
-        // Do any additional setup after loading the view.
         setUpLabels()
         setUpChart()
     }
     
     func setUpLabels() {
-        let probabilities = weatherRecords.sorted(by: {$0.0 > $1.0})
-        let intensity = weatherRecords.sorted(by: {$0.2 > $1.2})
+        let probabilities = weatherRecords.sorted(by: {$0.probability > $1.probability})
+        let intensity = weatherRecords.sorted(by: {$0.intensity > $1.intensity})
         
-        probabilityLabel.text = "\(Int((probabilities.first!.0)))% at \(weatherFormatter.string(from: (probabilities.first?.1)!).lowercased())"
-        intensityLabel.text = "\(intensity.first!.2 * 1000)mm/h at \(weatherFormatter.string(from: intensity.first!.1).lowercased())"
-        timeLabel.text = "\(weatherFormatter.string(from: (weatherRecords.filter( {$0.0 > 0}).first?.1)!).lowercased())"
-        
+        probabilityLabel.text = "\(Int((probabilities.first!.probability)))% at \(weatherFormatter.string(from: (probabilities.first?.date())!).lowercased())"
+        intensityLabel.text = "\(intensity.first!.intensity * 1000)mm/h at \(weatherFormatter.string(from: intensity.first!.date()).lowercased())"
+        timeLabel.text = "\(weatherFormatter.string(from: (weatherRecords.filter( {$0.probability > 0}).first?.date())!).lowercased())"
     }
-    
     
     func setUpChart() {
         chartView.backgroundColor = UIColor.clear
-        
         chartView.chartDescription?.text = ""
         chartView.dragEnabled = true
         chartView.pinchZoomEnabled = false
@@ -53,7 +48,6 @@ class WeatherViewController: UIViewController {
         chartView.highlightPerDragEnabled = false
         chartView.legend.enabled = false
         chartView.drawBordersEnabled = false
-        
         chartView.xAxis.drawGridLinesEnabled = true
         chartView.xAxis.granularity = 1
         chartView.xAxis.axisMinimum = 0
@@ -63,7 +57,6 @@ class WeatherViewController: UIViewController {
         chartView.xAxis.labelPosition = .bottom
         chartView.xAxis.labelRotationAngle = 45
         chartView.xAxis.labelTextColor = .white
-        
         let percentages = ["", "25%", "50%", "75%", "100%"]
         chartView.rightAxis.drawLabelsEnabled = true
         chartView.rightAxis.valueFormatter = IndexAxisValueFormatter(values: percentages)
@@ -74,37 +67,24 @@ class WeatherViewController: UIViewController {
         chartView.rightAxis.granularity = 25
         chartView.rightAxis.axisMaximum = 100
         chartView.rightAxis.axisMinimum = -1
-        
-        
         chartView.leftAxis.enabled = false
-        //chartView.leftAxis.drawLabelsEnabled = true
-        //chartView.leftAxis.valueFormatter = IndexAxisValueFormatter(values: percentages)
-        //chartView.leftAxis.labelPosition = .insideChart
-        //chartView.leftAxis.labelTextColor = .white
         chartView.leftAxis.axisMaximum = 100
         chartView.leftAxis.axisMinimum = -1
         chartView.leftAxis.drawAxisLineEnabled = false
-        //chartView.leftAxis.drawGridLinesEnabled = false
         
         var times: [String] = []
-        print("Recieved \(weatherRecords.count) weather records")
-        
         for (index, record) in weatherRecords.enumerated() {
-            let time = weatherFormatter.string(from: record.1)
+            let time = weatherFormatter.string(from: record.date())
             times.append(time)
-            
-            let value = ChartDataEntry(x: Double(index), y: record.0)
+            let value = ChartDataEntry(x: Double(index), y: record.probability)
             chartRecords.append(value)
         }
-        
-        print(times)
         chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: times)
         
         let line = LineChartDataSet(values: chartRecords, label: "Probability")
         line.drawCirclesEnabled = false
         line.drawFilledEnabled = true
         line.drawValuesEnabled = false
-        
         line.fillColor = .white
         line.fillAlpha = 0.5
         line.lineWidth = 3
@@ -127,21 +107,5 @@ class WeatherViewController: UIViewController {
     @IBAction func dismissButton(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

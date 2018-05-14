@@ -59,7 +59,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
         return (180/Double.pi) * rad
     }
     
-    func loadDefaults() {
+    @objc func loadDefaults() {
         print("Loading defaults...")
         let defaults = UserDefaults()
         
@@ -184,7 +184,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
         }
     }
     
-    func clockTick() {
+    @objc func clockTick() {
         if clockLabel != nil {
             let date = Date()
             clockLabel.text = formatter.string(from: date)
@@ -243,7 +243,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
         self.performSegue(withIdentifier: "showSettings", sender: self)
     }
     
-    func didResetFuelTrip() {
+    @objc func didResetFuelTrip() {
         self.lastLocation = nil
         self.currentDistance = 0
     }
@@ -272,7 +272,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
         }
     }
     
-    func resetSpeed() {
+    @objc func resetSpeed() {
         maxSpeed = 0
         if maxSpeedLabel != nil {
             maxSpeedLabel.text = ""
@@ -320,22 +320,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
         
         if !weatherHasBeenRequested {
             weatherHasBeenRequested = true
-            weatherMan.willItRainToday(lattitude: String(firstLocation.coordinate.latitude), longitude: String(firstLocation.coordinate.longitude)) { weatherRecords in
-                if weatherRecords.count > 0 {
-                    self.rainButton.isHidden = false
-                    let sortedRecords = weatherRecords.sorted(by: {$0.Time < $1.Time})
-                    print("Received \(sortedRecords.count) records")
+            weatherMan.willItRainToday(lattitude: String(firstLocation.coordinate.latitude), longitude: String(firstLocation.coordinate.longitude)) { weatherRecord in
+
+                if weatherRecord != nil {
                     let weatherFormatter = DateFormatter()
                     weatherFormatter.locale = Locale(identifier: "en_US_POSIX")
                     weatherFormatter.dateFormat = "ha"
-                    guard let firstRain = sortedRecords.filter({$0.Probability > 0}).first else {
-                        print("firstRain is nil")
-                        return
-                    }
-                    self.rainLabel.text = weatherFormatter.string(from: (firstRain.Time)).lowercased()
+                    
+                    self.rainLabel.text = weatherFormatter.string(from: (weatherRecord!.date())).lowercased()
                     self.rainLabel.isHidden = false
+                    self.rainButton.isHidden = false
                 } else {
-                    print("Doesn't look like it will rain today")
+                    print("No record of rain found")
                 }
             }
         }
@@ -395,7 +391,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, URLSessionDel
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
             
-            player = try AVAudioPlayer(data: sound.data, fileTypeHint: AVFileTypeWAVE)
+            player = try AVAudioPlayer(data: sound.data, fileTypeHint: AVFileType.wav.rawValue)
             
             player!.play()
         } catch let error as NSError {
